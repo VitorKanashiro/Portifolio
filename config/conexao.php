@@ -13,4 +13,25 @@ if (!$conn){
 }
 
 mysqli_set_charset($conn, DB_CHARSET);
+
+//Função de limpeza e proteção de dados
+function sanatize(string $str): string {
+    return htmlspecialchars(strip_tags(trim($str)), ENT_QUOTES, 'UTF-8');
+}
+
+//Função bloquear acesso sem login
+function requireAdmin(): void {
+    if(session_status() !== PHP_SESSION_ACTIVE)
+        session_start();
+    if (!isset($_SESSION['admin_id'])){
+        header('Location: ' . getAdminBase() . 'login.php');
+        exit;
+    }
+}
+
+//Ajustar caminhos de pastas automaticamente
+function getAdminBase(): string {
+    $uri = $_SERVER['REQUEST_URI'] ?? '';
+    return (strpos($uri, '/admin/') !== false) ? '' : 'admin/';
+}
 ?>
