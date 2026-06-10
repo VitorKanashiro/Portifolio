@@ -1,0 +1,20 @@
+# admin/.htaccess — Proteções e redirecionamentos administrativos
+
+# 1. Impede a listagem de diretórios
+Options -Indexes
+
+# 2. Define o arquivo padrão para servir nos diretórios
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /portifolio-1/admin/
+
+    # Mapeia /admin/login ou /admin/login.php para auth/login.php
+    RewriteRule ^login/?$ auth/login.php [L,QSA]
+    RewriteRule ^login\.php$ auth/login.php [L,QSA]
+
+    # Mapeia /admin/logout ou /admin/logout.php para auth/logout.php
+    RewriteRule ^logout/?$ auth/logout.php [L,QSA]
+    RewriteRule ^logout\.php$ auth/logout.php [L,QSA]
+</IfModule>
