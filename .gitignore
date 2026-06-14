@@ -1,0 +1,20 @@
+# Configurações locais
+config/conexao.php
+.env
+
+# Uploads
+assets/uploads/
+
+# Dependências
+vendor/
+node_modules/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.cache
