@@ -197,13 +197,13 @@ window.showToast = function (message, type = 'success') {
     };
 const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === '1') {
-        showToast('OperaÃ§Ã£o realizada com sucesso!', 'success');
+        showToast('Operação realizada com sucesso!', 'success');
     }
     if (urlParams.get('error') === '1') {
         showToast('Ocorreu um erro. Tente novamente.', 'danger');
     }
     if (urlParams.get('deleted') === '1') {
-        showToast('Item excluÃ­do com sucesso.', 'warning');
+        showToast('Item excluído com sucesso.', 'warning');
     }
 window.confirmDelete = function (url, name) {
         const modal = document.getElementById('deleteModal');

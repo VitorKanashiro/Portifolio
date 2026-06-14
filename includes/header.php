@@ -7,9 +7,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once dirname(__DIR__) . '/includes/helpers.php';
 
 $base_url = getSiteRoot();
-$page_title    = $page_title    ?? 'PortfÃ³lio Profissional';
-$page_desc     = $page_desc     ?? 'PortfÃ³lio de desenvolvedor web com projetos em PHP, MySQL e Bootstrap.';
-$page_keywords = $page_keywords ?? 'portfÃ³lio, desenvolvedor, PHP, MySQL, Bootstrap, ADS';
+$page_title    = $page_title    ?? 'Portfólio Profissional';
+$page_desc     = $page_desc     ?? 'Portfólio de desenvolvedor web com projetos em PHP, MySQL e Bootstrap.';
+$page_keywords = $page_keywords ?? 'portfólio, desenvolvedor, PHP, MySQL, Bootstrap, ADS';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-bs-theme="dark">

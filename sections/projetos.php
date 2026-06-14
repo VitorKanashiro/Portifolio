@@ -6,7 +6,7 @@ $tecnologiasFiltro = $tecnologias_projeto ?? [];
     <div class="container py-5">
         <div class="text-center mb-5 reveal">
             <h2 id="projetos-titulo" class="section-title mx-auto">Projetos</h2>
-            <p class="text-muted-custom mt-4">Algumas das soluÃ§Ãµes que desenvolvi</p>
+            <p class="text-muted-custom mt-4">Algumas das soluções que desenvolvi</p>
         </div>
 
         <div class="d-flex flex-wrap gap-3 justify-content-center align-items-center mb-5 reveal">
@@ -79,7 +79,7 @@ $tecnologiasFiltro = $tecnologias_projeto ?? [];
                             <?php if (!empty($projeto['github'])): ?>
                             <a href="<?= esc($projeto['github']) ?>" target="_blank" rel="noopener noreferrer"
                                class="btn btn-outline-custom btn-custom flex-fill" style="padding: 0.6rem 1rem; font-size: 0.85rem;">
-                                <i class="bi bi-github" aria-hidden="true"></i> RepositÃ³rio
+                                <i class="bi bi-github" aria-hidden="true"></i> Repositório
                             </a>
                             <?php endif; ?>
                         </div>

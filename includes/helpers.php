@@ -1,7 +1,7 @@
 ﻿<?php
 // Componente visual global
 
-// Polyfills para compatibilidade com versÃµes anteriores ao PHP 8.0
+// Polyfills para compatibilidade com versões anteriores ao PHP 8.0
 if (!function_exists('str_contains')) {
     function str_contains(string $haystack, string $needle): bool
     {

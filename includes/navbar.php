@@ -17,14 +17,14 @@ $navItems = [
 ];
 ?>
 <header>
-    <nav class="navbar navbar-expand-lg fixed-top glass-nav" id="mainNav" aria-label="NavegaÃ§Ã£o principal">
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav" id="mainNav" aria-label="Navegação principal">
         <div class="container">
             <a class="navbar-brand text-gradient" href="<?= esc($navHomeUrl) ?>">
                 &lt;<?= esc($nome) ?>/&gt;
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu de navegaÃ§Ã£o">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu de navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
 

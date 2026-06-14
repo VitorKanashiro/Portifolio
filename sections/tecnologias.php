@@ -17,7 +17,7 @@
                         <i class="bi <?= esc($tech['icone']) ?>" aria-hidden="true"></i>
                     </div>
                     <h3 class="fw-bold mb-1 text-white fs-6"><?= esc($tech['nome']) ?></h3>
-                    <span class="badge-level <?= badgeNivelTecnologia($tech['nivel'] ?? 'intermediÃ¡rio') ?>">
+                    <span class="badge-level <?= badgeNivelTecnologia($tech['nivel'] ?? 'intermediário') ?>">
                         <?= esc($tech['nivel']) ?>
                     </span>
                 </article>

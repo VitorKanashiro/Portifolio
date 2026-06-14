@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
@@ -25,7 +25,7 @@ class RedeController
             'sucesso_get' => $sucesso ? adminMensagemSucesso($sucesso, [
                 'created' => 'Rede social adicionada!',
                 'updated' => 'Rede social atualizada!',
-                'deleted' => 'Rede social excluÃ­da!',
+                'deleted' => 'Rede social excluída!',
             ]) : '',
         ], ['page_title' => 'Redes Sociais | Admin']);
     }
@@ -40,7 +40,7 @@ class RedeController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->inserir($_POST);
             if ($resultado['redirect']) {
-                adminRedirect('index.php', 'created');
+                adminRedirect(adminWebPath() . 'redes', 'created');
             }
             $erro  = $resultado['erro'];
             $dados = $resultado['dados'];
@@ -58,13 +58,13 @@ class RedeController
 
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if (!$id) {
-            header('Location: index.php');
+            header('Location: ' . adminWebPath() . 'redes');
             exit;
         }
 
         $rede = dbFetchOne($this->conn, 'SELECT * FROM redes_sociais WHERE id = ? LIMIT 1', 'i', $id);
         if (!$rede) {
-            header('Location: index.php');
+            header('Location: ' . adminWebPath() . 'redes');
             exit;
         }
 
@@ -73,7 +73,7 @@ class RedeController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->atualizar($id, $_POST);
             if ($resultado['redirect']) {
-                adminRedirect('index.php', 'updated');
+                adminRedirect(adminWebPath() . 'redes', 'updated');
             }
             $erro = $resultado['erro'];
             $rede = array_merge($rede, $resultado['dados']);
@@ -95,7 +95,7 @@ class RedeController
             dbExecute($this->conn, 'DELETE FROM redes_sociais WHERE id = ?', 'i', $id);
         }
 
-        adminRedirect('index.php', 'deleted');
+        adminRedirect(adminWebPath() . 'redes', 'deleted');
     }
 
     private function inserir(array $post): array
@@ -163,10 +163,10 @@ class RedeController
     private function validar(array $dados): string
     {
         if ($dados['plataforma'] === '') {
-            return 'O nome da plataforma Ã© obrigatÃ³rio.';
+            return 'O nome da plataforma é obrigatório.';
         }
         if ($dados['link'] === '') {
-            return 'O link Ã© obrigatÃ³rio e deve ser uma URL vÃ¡lida.';
+            return 'O link é obrigatório e deve ser uma URL válida.';
         }
 
         return '';

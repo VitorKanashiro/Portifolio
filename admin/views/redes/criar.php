@@ -24,7 +24,7 @@
                                    value="<?= adminEsc($plataforma ?? '') ?>" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label-custom">Ordem de exibiÃ§Ã£o</label>
+                            <label class="form-label-custom">Ordem de exibição</label>
                             <input type="number" name="ordem" class="form-control form-control-admin" value="<?= (int) ($ordem ?? 0) ?>">
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">Ãcone (Bootstrap Icons) *</label>
+                        <label class="form-label-custom">ícone (Bootstrap Icons) *</label>
                         <div class="position-relative">
                             <i id="icon-preview" class="bi bi-link-45deg position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:1.1rem;"></i>
                             <input type="text" name="icone" id="iconeInput" class="form-control form-control-admin"

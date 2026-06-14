@@ -51,7 +51,7 @@ $projetosCount  = $sobre['projetos_count'] ?? '20+';
                     <div class="text-center">
                         <div class="fw-black" style="font-size: 2rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
                              data-count="<?= extrairNumeroExperiencia($experiencia) ?>" data-suffix="+">0</div>
-                        <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Anos de ExperiÃªncia</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Anos de Experiência</div>
                     </div>
                     <div style="width: 1px; background: var(--border-glass);" aria-hidden="true"></div>
                     <div class="text-center">

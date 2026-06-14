@@ -1,7 +1,7 @@
 ﻿<?php
 // Secao principal do portfolio
 ?>
-<section id="home" class="hero-section position-relative" aria-label="ApresentaÃ§Ã£o">
+<section id="home" class="hero-section position-relative" aria-label="Apresentação">
     <canvas id="particles-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" aria-hidden="true"></canvas>
 
     <div class="container position-relative" style="z-index: 1;">
@@ -9,11 +9,11 @@
             <div class="col-lg-7 col-md-6 text-center text-md-start order-2 order-md-1 mt-4 mt-md-0">
                 <span class="badge mb-3 py-2 px-3" style="background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4); color: #a78bfa; border-radius: 50px; font-size: 0.8rem; letter-spacing: 1px;">
                     <i class="bi bi-circle-fill me-2" style="color: #10b981; font-size: 0.5rem;" aria-hidden="true"></i>
-                    DisponÃ­vel para projetos
+                    Disponível para projetos
                 </span>
 
                 <p class="text-muted mb-2 fw-semibold" style="letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">
-                    OlÃ¡, eu sou
+                    Olá, eu sou
                 </p>
                                 <h1 class="display-3 fw-black mb-3 lh-sm">
                     <?= esc($nome) ?><br>

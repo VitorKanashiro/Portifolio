@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
@@ -28,7 +28,7 @@ class TecnologiaController
             'sucesso_get' => $sucesso ? adminMensagemSucesso($sucesso, [
                 'created' => 'Tecnologia criada!',
                 'updated' => 'Tecnologia atualizada!',
-                'deleted' => 'Tecnologia excluÃ­da!',
+                'deleted' => 'Tecnologia excluída!',
             ]) : '',
         ], ['page_title' => 'Tecnologias | Admin']);
     }
@@ -38,13 +38,13 @@ class TecnologiaController
         exigirAutenticacao();
 
         $erro = '';
-        $dados = ['nome' => '', 'icone' => '', 'nivel' => 'IntermediÃ¡rio'];
+        $dados = ['nome' => '', 'icone' => '', 'nivel' => 'Intermediário'];
         $iconesSugeridos = $this->iconesSugeridos();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->inserir($_POST);
             if ($resultado['redirect']) {
-                adminRedirect('index.php', 'created');
+                adminRedirect(adminWebPath() . 'tecnologias', 'created');
             }
             $erro  = $resultado['erro'];
             $dados = $resultado['dados'];
@@ -62,13 +62,13 @@ class TecnologiaController
 
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if (!$id) {
-            header('Location: index.php');
+            header('Location: ' . adminWebPath() . 'tecnologias');
             exit;
         }
 
         $tech = dbFetchOne($this->conn, 'SELECT * FROM tecnologias WHERE id = ? LIMIT 1', 'i', $id);
         if (!$tech) {
-            header('Location: index.php');
+            header('Location: ' . adminWebPath() . 'tecnologias');
             exit;
         }
 
@@ -77,7 +77,7 @@ class TecnologiaController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->atualizar($id, $_POST);
             if ($resultado['redirect']) {
-                adminRedirect('index.php', 'updated');
+                adminRedirect(adminWebPath() . 'tecnologias', 'updated');
             }
             $erro = $resultado['erro'];
             $tech = array_merge($tech, $resultado['dados']);
@@ -99,13 +99,13 @@ class TecnologiaController
             dbExecute($this->conn, 'DELETE FROM tecnologias WHERE id = ?', 'i', $id);
         }
 
-        adminRedirect('index.php', 'deleted');
+        adminRedirect(adminWebPath() . 'tecnologias', 'deleted');
     }
 
     private function inserir(array $post): array
     {
         $dados = $this->extrairDados($post);
-        $erro  = $dados['nome'] === '' ? 'O nome Ã© obrigatÃ³rio.' : '';
+        $erro  = $dados['nome'] === '' ? 'O nome é obrigatório.' : '';
 
         if ($erro !== '') {
             return ['redirect' => false, 'erro' => $erro, 'dados' => $dados];
@@ -128,7 +128,7 @@ class TecnologiaController
     private function atualizar(int $id, array $post): array
     {
         $dados = $this->extrairDados($post);
-        $erro  = $dados['nome'] === '' ? 'O nome Ã© obrigatÃ³rio.' : '';
+        $erro  = $dados['nome'] === '' ? 'O nome é obrigatório.' : '';
 
         if ($erro !== '') {
             return ['redirect' => false, 'erro' => $erro, 'dados' => $dados];
@@ -150,11 +150,11 @@ class TecnologiaController
 
     private function extrairDados(array $post): array
     {
-        $niveisValidos = ['BÃ¡sico', 'IntermediÃ¡rio', 'AvanÃ§ado', 'Expert'];
-        $nivel = adminSanitizar($post['nivel'] ?? 'IntermediÃ¡rio');
+        $niveisValidos = ['Básico', 'Intermediário', 'Avançado', 'Expert'];
+        $nivel = adminSanitizar($post['nivel'] ?? 'Intermediário');
 
         if (!in_array($nivel, $niveisValidos, true)) {
-            $nivel = 'IntermediÃ¡rio';
+            $nivel = 'Intermediário';
         }
 
         return [

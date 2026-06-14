@@ -24,7 +24,7 @@ class LoginController
             'sucesso' => $this->mensagemLogout(),
             'email'   => adminSanitizar($_POST['email'] ?? ''),
             'timeout' => isset($_GET['timeout']),
-            'recuperar_senha_habilitado' => false, // preparado para implementaÃ§Ã£o futura
+            'recuperar_senha_habilitado' => false, // preparado para implementação futura
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,7 +39,7 @@ class LoginController
         }
 
         renderAdminView('auth/login', $dados, [
-            'page_title'   => 'Login | Admin PortfÃ³lio',
+            'page_title'   => 'Login | Admin Portfólio',
             'show_sidebar' => false,
         ]);
     }
@@ -87,7 +87,7 @@ class LoginController
         private function mensagemLogout(): string
     {
         if (isset($_GET['logged_out'])) {
-            return 'SessÃ£o encerrada com sucesso.';
+            return 'Sessão encerrada com sucesso.';
         }
 
         return '';
@@ -112,7 +112,7 @@ class LoginController
     {
         return [
             'sucesso' => false,
-            'erro'    => 'RecuperaÃ§Ã£o de senha ainda nÃ£o configurada. Contate o administrador do sistema.',
+            'erro'    => 'Recuperação de senha ainda não configurada. Contate o administrador do sistema.',
         ];
     }
 }

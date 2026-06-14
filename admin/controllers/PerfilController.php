@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
@@ -24,12 +24,14 @@ class PerfilController
         }
 
         $erro    = '';
-        $sucesso = '';
+        $sucesso = ($_GET['success'] ?? '') === 'updated' ? 'Perfil atualizado com sucesso!' : '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->atualizar((int) $perfil['id'], $perfil, $_POST, $_FILES);
+            if ($resultado['sucesso'] !== '') {
+                adminRedirect(adminWebPath() . 'perfil', 'updated');
+            }
             $erro      = $resultado['erro'];
-            $sucesso   = $resultado['sucesso'];
             $perfil    = dbFetchOne($this->conn, 'SELECT * FROM perfil LIMIT 1') ?? $perfil;
         }
 
@@ -51,7 +53,7 @@ class PerfilController
         $foto      = $perfil['foto'] ?? '';
 
         if ($nome === '') {
-            return ['erro' => 'O nome Ã© obrigatÃ³rio.', 'sucesso' => ''];
+            return ['erro' => 'O nome é obrigatório.', 'sucesso' => ''];
         }
 
         if (!empty($files['foto']['name'])) {

@@ -44,7 +44,7 @@
                             <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
                         </div>
                         <div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">LocalizaÃ§Ã£o</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Localização</div>
                             <span class="fw-semibold text-white" style="font-size: 0.95rem;"><?= esc($contato['cidade']) ?></span>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="d-flex gap-2 flex-wrap">
                             <?php foreach ($redes as $rede): ?>
                             <a href="<?= esc($rede['link']) ?>" target="_blank" rel="noopener noreferrer"
-                               class="social-link" title="<?= esc($rede['plataforma']) ?> â€” <?= esc($nome ?? 'PortfÃ³lio') ?>">
+                               class="social-link" title="<?= esc($rede['plataforma']) ?> â€” <?= esc($nome ?? 'Portfólio') ?>">
                                 <i class="bi <?= esc($rede['icone']) ?>" aria-hidden="true"></i>
                                 <span class="visually-hidden"><?= esc($rede['plataforma']) ?></span>
                             </a>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-12">
                                 <label class="form-label-custom" for="contato-assunto">Assunto</label>
-                                <input type="text" id="contato-assunto" name="assunto" class="form-control form-control-custom" placeholder="Sobre o que vocÃª quer conversar?">
+                                <input type="text" id="contato-assunto" name="assunto" class="form-control form-control-custom" placeholder="Sobre o que você quer conversar?">
                             </div>
                             <div class="col-12">
                                 <label class="form-label-custom" for="contato-mensagem">Mensagem *</label>

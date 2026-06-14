@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">Ãcone Bootstrap Icons</label>
+                        <label class="form-label-custom">ícone Bootstrap Icons</label>
                         <div class="position-relative">
                             <i id="icon-preview" class="bi <?= adminEsc($icone ?? $tec['icone']) ?> position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:1.1rem;"></i>
                             <input type="text" name="icone" id="iconeInput" class="form-control form-control-admin"
@@ -44,13 +44,13 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label-custom">NÃ­vel</label>
+                        <label class="form-label-custom">Nível</label>
                         <div class="d-flex gap-2 flex-wrap">
                             <?php
                             $niveis = [
-                                'BÃ¡sico'         => ['color' => '#94a3b8', 'bg' => 'rgba(100,116,139,0.25)', 'border' => 'rgba(100,116,139,0.5)'],
-                                'IntermediÃ¡rio'  => ['color' => '#fbbf24', 'bg' => 'rgba(245,158,11,0.2)',   'border' => 'rgba(245,158,11,0.5)'],
-                                'AvanÃ§ado'       => ['color' => '#22d3ee', 'bg' => 'rgba(6,182,212,0.2)',    'border' => 'rgba(6,182,212,0.5)'],
+                                'Básico'         => ['color' => '#94a3b8', 'bg' => 'rgba(100,116,139,0.25)', 'border' => 'rgba(100,116,139,0.5)'],
+                                'Intermediário'  => ['color' => '#fbbf24', 'bg' => 'rgba(245,158,11,0.2)',   'border' => 'rgba(245,158,11,0.5)'],
+                                'Avançado'       => ['color' => '#22d3ee', 'bg' => 'rgba(6,182,212,0.2)',    'border' => 'rgba(6,182,212,0.5)'],
                             ];
                             $nivelAtual = $nivel ?? $tec['nivel'];
                             foreach ($niveis as $nv => $style): ?>
@@ -64,7 +64,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary-custom btn-custom btn-lg">
-                    <i class="bi bi-check-circle me-2"></i>Salvar AlteraÃ§Ãµes
+                    <i class="bi bi-check-circle me-2"></i>Salvar Alterações
                 </button>
                 <button type="button" onclick="confirmDelete('<?= adminEsc($adminBase) ?>tecnologias/excluir?id=<?= (int) $id ?>', '<?= adminEsc(addslashes($tec['nome'])) ?>')"
                         class="btn btn-custom btn-lg ms-2" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171;">

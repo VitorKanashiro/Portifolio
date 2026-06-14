@@ -16,7 +16,7 @@
             <i class="bi bi-search position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);"></i>
             <input type="text" name="q" class="form-control form-control-admin"
                    style="padding-left:2.75rem !important;"
-                   placeholder="Buscar por tÃ­tulo ou tecnologia..."
+                   placeholder="Buscar por título ou tecnologia..."
                    value="<?= adminEsc($search ?? '') ?>">
         </div>
     </form>
@@ -28,11 +28,11 @@
             <thead>
                 <tr>
                     <th>Imagem</th>
-                    <th>TÃ­tulo</th>
+                    <th>Título</th>
                     <th>Tecnologias</th>
                     <th>Destaque</th>
                     <th>Data</th>
-                    <th class="text-end">AÃ§Ãµes</th>
+                    <th class="text-end">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,7 +65,7 @@
                                 <i class="bi bi-star-fill me-1"></i>Sim
                             </span>
                             <?php else: ?>
-                            <span class="text-muted-custom small">â€”</span>
+                            <span class="text-muted-custom small">Não</span>
                             <?php endif; ?>
                         </td>
                         <td class="text-muted-custom small"><?= date('d/m/Y', strtotime($p['created_at'])) ?></td>

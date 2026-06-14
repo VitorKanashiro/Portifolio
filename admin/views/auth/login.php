@@ -17,7 +17,7 @@
 
         <?php if (!empty($timeout)): ?>
         <div class="alert-custom alert-danger-custom mb-4 p-3 rounded-3" role="alert">
-            <i class="bi bi-clock-history me-2" aria-hidden="true"></i>Sua sessÃ£o expirou por inatividade. FaÃ§a login novamente.
+            <i class="bi bi-clock-history me-2" aria-hidden="true"></i>Sua sessão expirou por inatividade. Faça login novamente.
         </div>
         <?php endif; ?>
 
@@ -39,7 +39,7 @@
                     <i class="bi bi-lock position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);" aria-hidden="true"></i>
                     <input type="password" name="senha" id="senhaInput" class="form-control form-control-admin"
                            style="padding-left:2.75rem !important; padding-right:3rem !important;"
-                           placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required>
+                           placeholder="••••••••" required>
                     <button type="button" onclick="toggleSenha()"
                             style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;padding:0;"
                             aria-label="Mostrar ou ocultar senha">

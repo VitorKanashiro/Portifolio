@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
@@ -24,12 +24,14 @@ class SobreController
         }
 
         $erro    = '';
-        $sucesso = '';
+        $sucesso = ($_GET['success'] ?? '') === 'updated' ? 'Informações sobre você atualizadas com sucesso!' : '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->atualizar((int) $sobre['id'], $sobre, $_POST, $_FILES);
+            if ($resultado['sucesso'] !== '') {
+                adminRedirect(adminWebPath() . 'sobre', 'updated');
+            }
             $erro      = $resultado['erro'];
-            $sucesso   = $resultado['sucesso'];
             $sobre     = dbFetchOne($this->conn, 'SELECT * FROM sobre LIMIT 1') ?? $sobre;
         }
 
@@ -51,7 +53,7 @@ class SobreController
         $foto           = $sobre['foto'] ?? '';
 
         if ($titulo === '') {
-            return ['erro' => 'O tÃ­tulo Ã© obrigatÃ³rio.', 'sucesso' => ''];
+            return ['erro' => 'O título é obrigatório.', 'sucesso' => ''];
         }
 
         if (!empty($files['foto']['name'])) {
@@ -73,8 +75,8 @@ class SobreController
         );
 
         return $ok
-            ? ['erro' => '', 'sucesso' => 'InformaÃ§Ãµes sobre vocÃª atualizadas com sucesso!']
-            : ['erro' => 'Erro ao salvar informaÃ§Ãµes.', 'sucesso' => ''];
+            ? ['erro' => '', 'sucesso' => 'Informações sobre você atualizadas com sucesso!']
+            : ['erro' => 'Erro ao salvar informações.', 'sucesso' => ''];
     }
 }
 

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
@@ -56,7 +56,7 @@ class ProjetoController
             'sucesso_get'  => $sucesso ? adminMensagemSucesso($sucesso, [
                 'created' => 'Projeto criado com sucesso!',
                 'updated' => 'Projeto atualizado com sucesso!',
-                'deleted' => 'Projeto excluÃ­do com sucesso!',
+                'deleted' => 'Projeto excluído com sucesso!',
             ]) : '',
         ], ['page_title' => 'Projetos | Admin']);
     }
@@ -71,7 +71,7 @@ class ProjetoController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->salvarNovo($_POST, $_FILES);
             if ($resultado['redirect']) {
-                adminRedirect('index.php', 'created');
+                adminRedirect(adminWebPath() . 'projetos', 'created');
             }
             $erro       = $resultado['erro'];
             $dadosForm  = $resultado['dados'];
@@ -88,13 +88,13 @@ class ProjetoController
 
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if (!$id) {
-            header('Location: index.php');
+            header('Location: ' . adminWebPath() . 'projetos');
             exit;
         }
 
         $projeto = dbFetchOne($this->conn, 'SELECT * FROM projetos WHERE id = ? LIMIT 1', 'i', $id);
         if (!$projeto) {
-            header('Location: index.php');
+            header('Location: ' . adminWebPath() . 'projetos');
             exit;
         }
 
@@ -103,7 +103,7 @@ class ProjetoController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->atualizar($id, $projeto, $_POST, $_FILES);
             if ($resultado['redirect']) {
-                adminRedirect('index.php', 'updated');
+                adminRedirect(adminWebPath() . 'projetos', 'updated');
             }
             $erro    = $resultado['erro'];
             $projeto = array_merge($projeto, $resultado['dados']);
@@ -122,7 +122,7 @@ class ProjetoController
 
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if (!$id) {
-            header('Location: index.php');
+            header('Location: ' . adminWebPath() . 'projetos');
             exit;
         }
 
@@ -133,7 +133,7 @@ class ProjetoController
             dbExecute($this->conn, 'DELETE FROM projetos WHERE id = ?', 'i', $id);
         }
 
-        adminRedirect('index.php', 'deleted');
+        adminRedirect(adminWebPath() . 'projetos', 'deleted');
     }
 
     private function salvarNovo(array $post, array $files): array
@@ -232,7 +232,7 @@ class ProjetoController
     private function validarDados(array $dados): string
     {
         if ($dados['titulo'] === '') {
-            return 'O tÃ­tulo Ã© obrigatÃ³rio.';
+            return 'O título é obrigatório.';
         }
 
         return '';

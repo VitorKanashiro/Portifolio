@@ -90,7 +90,7 @@ class PortfolioController
     }
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    // DADOS COMBINADOS PARA A PÃGINA INICIAL
+    // DADOS COMBINADOS PARA A PÁGINA INICIAL
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public function carregarPaginaInicial(): array
@@ -114,8 +114,8 @@ class PortfolioController
         return [
             'nome'     => $perfil['nome']      ?? 'Desenvolvedor Full Stack',
             'cargo'    => $perfil['cargo']     ?? 'Desenvolvedor Full Stack',
-            'frase'    => $perfil['frase']     ?? 'Transformando ideias em cÃ³digo.',
-            'sub'      => $perfil['subtitulo'] ?? 'Criando soluÃ§Ãµes web modernas e escalÃ¡veis.',
+            'frase'    => $perfil['frase']     ?? 'Transformando ideias em código.',
+            'sub'      => $perfil['subtitulo'] ?? 'Criando soluções web modernas e escaláveis.',
             'github'   => $perfil['github']    ?? '#',
             'linkedin' => $perfil['linkedin']  ?? '#',
             'foto'     => $perfil['foto']      ?? '',
@@ -140,7 +140,7 @@ class PortfolioController
     }
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    // URLs amigÃ¡veis dos projetos
+    // URLs amigáveis dos projetos
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public function gerarSlugProjeto(array $projeto): string
@@ -154,41 +154,41 @@ class PortfolioController
     }
 
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    // SEO BÃSICO â€” title, description e keywords por pÃ¡gina
+    // SEO BÁSICO â€” title, description e keywords por página
     // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
         public function seoPaginaInicial(array $dados): array
     {
-        $nome  = $dados['nome']  ?? 'PortfÃ³lio';
+        $nome  = $dados['nome']  ?? 'Portfólio';
         $cargo = $dados['cargo'] ?? 'Desenvolvedor';
         $sub   = $dados['sub']   ?? '';
 
         $descricao = $sub !== ''
             ? $sub
-            : 'PortfÃ³lio de ' . $nome . ', estudante de ADS e desenvolvedor focado em criar soluÃ§Ãµes modernas e eficientes.';
+            : 'Portfólio de ' . $nome . ', estudante de ADS e desenvolvedor focado em criar soluções modernas e eficientes.';
 
         return [
             'page_title'    => $nome . ' | ' . $cargo,
             'page_desc'     => $descricao,
-            'page_keywords' => $nome . ', ADS, Desenvolvedor, PHP, MySQL, Bootstrap, PortfÃ³lio, ' . $cargo,
+            'page_keywords' => $nome . ', ADS, Desenvolvedor, PHP, MySQL, Bootstrap, Portfólio, ' . $cargo,
         ];
     }
 
         public function seoPaginaProjeto(array $projeto, array $perfil): array
     {
-        $nomePerfil = $perfil['nome'] ?? 'PortfÃ³lio';
+        $nomePerfil = $perfil['nome'] ?? 'Portfólio';
         $titulo     = $projeto['titulo'] ?? 'Projeto';
         $descricao  = mb_substr($projeto['descricao'] ?? '', 0, 160);
         $techs      = $projeto['tecnologias'] ?? '';
 
         if ($descricao === '') {
-            $descricao = 'Detalhes do projeto ' . $titulo . ' no portfÃ³lio de ' . $nomePerfil . '.';
+            $descricao = 'Detalhes do projeto ' . $titulo . ' no portfólio de ' . $nomePerfil . '.';
         }
 
         return [
             'page_title'    => $titulo . ' | ' . $nomePerfil,
             'page_desc'     => $descricao,
-            'page_keywords' => $titulo . ', ' . $techs . ', projeto, portfÃ³lio, ' . $nomePerfil,
+            'page_keywords' => $titulo . ', ' . $techs . ', projeto, portfólio, ' . $nomePerfil,
         ];
     }
 }

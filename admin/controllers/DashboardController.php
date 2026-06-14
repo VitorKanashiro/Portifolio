@@ -24,7 +24,7 @@ class DashboardController
             'projetos_recentes'  => dbFetchAll($this->conn, 'SELECT * FROM projetos ORDER BY created_at DESC LIMIT 6'),
             'mensagens_recentes' => dbFetchAll($this->conn, 'SELECT * FROM mensagens ORDER BY created_at DESC LIMIT 5'),
             'admin_email'        => adminEmailLogado(),
-        ], ['page_title' => 'Dashboard | Admin PortfÃ³lio']);
+        ], ['page_title' => 'Dashboard | Admin Portfólio']);
     }
 }
 

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
@@ -18,13 +18,13 @@ class MensagemController
 
         if (isset($_GET['action']) && $_GET['action'] === 'ler') {
             $this->marcarComoLida((int) ($_GET['id'] ?? 0));
-            header('Location: index.php');
+            header('Location: ' . adminWebPath() . 'mensagens');
             exit;
         }
 
         if (isset($_GET['action']) && $_GET['action'] === 'ler_todas') {
             dbExecute($this->conn, 'UPDATE mensagens SET lida = 1 WHERE lida = 0');
-            adminRedirect('index.php', 'readall');
+            adminRedirect(adminWebPath() . 'mensagens', 'readall');
         }
 
         $pagina   = max(1, (int) ($_GET['p'] ?? 1));
@@ -47,7 +47,7 @@ class MensagemController
             'total_pages' => (int) ceil($total / $porPagina),
             'totalPages'  => (int) ceil($total / $porPagina),
             'sucesso_get' => $sucesso ? adminMensagemSucesso($sucesso, [
-                'deleted' => 'Mensagem excluÃ­da com sucesso!',
+                'deleted' => 'Mensagem excluída com sucesso!',
                 'readall' => 'Todas as mensagens foram marcadas como lidas!',
             ]) : '',
         ], [
@@ -65,7 +65,7 @@ class MensagemController
             dbExecute($this->conn, 'DELETE FROM mensagens WHERE id = ?', 'i', $id);
         }
 
-        adminRedirect('index.php', 'deleted');
+        adminRedirect(adminWebPath() . 'mensagens', 'deleted');
     }
 
     private function marcarComoLida(int $id)

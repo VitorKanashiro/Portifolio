@@ -13,7 +13,7 @@ $urlAdmin = $adminBase ?? adminWebPath();
         </div>
         <div>
             <div class="fw-bold text-white" style="font-size: 0.95rem; line-height: 1.2;">Admin Panel</div>
-            <div style="font-size: 0.75rem; color: var(--text-muted);">PortfÃ³lio</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Portfólio</div>
         </div>
     </div>
 
@@ -26,7 +26,7 @@ $urlAdmin = $adminBase ?? adminWebPath();
             <span>Dashboard</span>
         </a>
 
-        <div class="sidebar-section-label">ConteÃºdo</div>
+        <div class="sidebar-section-label">Conteúdo</div>
 
         <a href="<?= adminEsc($urlAdmin) ?>projetos"
            class="sidebar-link <?= ($diretorioAtual === 'projetos') ? 'active' : '' ?>">

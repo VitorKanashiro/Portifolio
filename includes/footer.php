@@ -6,11 +6,11 @@ $base_url = $base_url ?? getSiteRoot();
 <footer class="text-center py-5" style="background: rgba(0,0,0,0.6); border-top: 1px solid var(--border-glass);">
     <div class="container">
         <a href="<?= esc(siteUrl('')) ?>#home" class="text-gradient fw-black fs-3 text-decoration-none d-block mb-3">
-            &lt;<?= esc($nome ?? 'PortfÃ³lio') ?>/&gt;
+            &lt;<?= esc($nome ?? 'Portfólio') ?>/&gt;
         </a>
 
         <?php if (!empty($redes)): ?>
-        <nav class="d-flex justify-content-center gap-3 mb-4" aria-label="Redes sociais no rodapÃ©">
+        <nav class="d-flex justify-content-center gap-3 mb-4" aria-label="Redes sociais no rodapé">
             <?php foreach ($redes as $rede): ?>
             <a href="<?= esc($rede['link']) ?>" target="_blank" rel="noopener noreferrer"
                class="social-link" title="<?= esc($rede['plataforma']) ?>">
@@ -22,7 +22,7 @@ $base_url = $base_url ?? getSiteRoot();
         <?php endif; ?>
 
         <p class="text-muted-custom mb-1 small">
-            &copy; <?= date('Y') ?> <?= esc($nome ?? 'PortfÃ³lio') ?>. Todos os direitos reservados.
+            &copy; <?= date('Y') ?> <?= esc($nome ?? 'Portfólio') ?>. Todos os direitos reservados.
         </p>
     </div>
 </footer>
@@ -36,8 +36,8 @@ $base_url = $base_url ?? getSiteRoot();
                 <div class="mb-3" style="font-size: 3rem; color: #ef4444;">
                     <i class="bi bi-exclamation-triangle" aria-hidden="true"></i>
                 </div>
-                <h5 class="fw-bold mb-2">Confirmar ExclusÃ£o</h5>
-                <p class="text-muted-custom mb-4">Deseja excluir <strong id="deleteItemName">este item</strong>? Esta aÃ§Ã£o nÃ£o pode ser desfeita.</p>
+                <h5 class="fw-bold mb-2">Confirmar Exclusão</h5>
+                <p class="text-muted-custom mb-4">Deseja excluir <strong id="deleteItemName">este item</strong>? Esta ação não pode ser desfeita.</p>
                 <div class="d-flex gap-2">
                     <button type="button" class="btn btn-outline-custom btn-custom flex-fill" data-bs-dismiss="modal">Cancelar</button>
                     <a id="deleteConfirmBtn" href="#" class="btn flex-fill btn-custom"

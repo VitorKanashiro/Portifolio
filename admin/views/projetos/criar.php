@@ -7,7 +7,7 @@
         </a>
         <div>
             <h1 class="fw-black mb-0 fs-3">Criar Projeto</h1>
-            <p class="text-muted-custom mb-0 small">Adicionar novo projeto ao portfÃ³lio</p>
+            <p class="text-muted-custom mb-0 small">Adicionar novo projeto ao portfólio</p>
         </div>
     </div>
 
@@ -17,16 +17,16 @@
         <div class="row g-4">
                         <div class="col-lg-8">
                 <div class="glass p-4 rounded-4 mb-4">
-                    <h5 class="fw-bold mb-4 text-gradient">InformaÃ§Ãµes do Projeto</h5>
+                    <h5 class="fw-bold mb-4 text-gradient">Informações do Projeto</h5>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">TÃ­tulo *</label>
+                        <label class="form-label-custom">Título *</label>
                         <input type="text" name="titulo" class="form-control form-control-admin"
-                               placeholder="Ex: Sistema de PortfÃ³lio" value="<?= adminEsc($titulo ?? '') ?>" required>
+                               placeholder="Ex: Sistema de Portfólio" value="<?= adminEsc($titulo ?? '') ?>" required>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">DescriÃ§Ã£o</label>
+                        <label class="form-label-custom">Descrição</label>
                         <textarea name="descricao" class="form-control form-control-admin" rows="5"
                                   placeholder="Descreva o projeto, suas funcionalidades e objetivos..."><?= adminEsc($descricao ?? '') ?></textarea>
                     </div>
@@ -34,9 +34,9 @@
                     <div class="mb-4">
                         <label class="form-label-custom">Tecnologias utilizadas</label>
                         <input type="text" name="tecnologias" class="form-control form-control-admin"
-                               placeholder="PHP, MySQL, Bootstrap, JavaScript (separadas por vÃ­rgula)"
+                               placeholder="PHP, MySQL, Bootstrap, JavaScript (separadas por vírgula)"
                                value="<?= adminEsc($tecnologias ?? '') ?>">
-                        <small class="text-muted-custom">Separe as tecnologias com vÃ­rgula</small>
+                        <small class="text-muted-custom">Separe as tecnologias com vírgula</small>
                     </div>
 
                     <div class="row g-3">
@@ -79,11 +79,11 @@
                         </div>
                     </div>
                     <input type="file" name="imagem" id="imageInput" class="form-control form-control-admin" accept="image/*" data-preview="img-preview">
-                    <small class="text-muted-custom d-block mt-2">JPG, PNG, WEBP Â· MÃ¡x. 5MB</small>
+                    <small class="text-muted-custom d-block mt-2">JPG, PNG, WEBP · Máx. 5MB</small>
                 </div>
 
                 <div class="glass p-4 rounded-4 mb-4">
-                    <h5 class="fw-bold mb-4 text-gradient">ConfiguraÃ§Ãµes</h5>
+                    <h5 class="fw-bold mb-4 text-gradient">Configurações</h5>
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <label class="fw-semibold d-block mb-1">Projeto em Destaque</label>

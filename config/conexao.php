@@ -10,7 +10,7 @@ define('DB_CHARSET', 'utf8mb4');
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if (!$conn) {
-    die(json_encode(['error' => 'Erro de conexÃ£o com o banco de dados.']));
+    die(json_encode(['error' => 'Erro de conexão com o banco de dados.']));
 }
 mysqli_set_charset($conn, DB_CHARSET);
 

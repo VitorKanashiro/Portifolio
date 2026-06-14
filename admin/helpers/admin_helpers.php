@@ -1,7 +1,7 @@
 <?php
 // Arquivo do painel administrativo
 
-// Polyfills para compatibilidade com versÃµes anteriores ao PHP 8.0
+// Polyfills para compatibilidade com versões anteriores ao PHP 8.0
 if (!function_exists('str_contains')) {
     function str_contains(string $haystack, string $needle): bool
     {
@@ -91,7 +91,7 @@ function adminLoginUrl(): string
 
 function renderAdminView(string $view, array $dados = [], array $opcoes = [])
 {
-    $pageTitle = $opcoes['page_title'] ?? 'Admin PortfÃ³lio';
+    $pageTitle = $opcoes['page_title'] ?? 'Admin Portfólio';
     $showSidebar = $opcoes['show_sidebar'] ?? true;
     $extraScripts = $opcoes['extra_scripts'] ?? '';
     $extraStyles = $opcoes['extra_styles'] ?? '';
@@ -112,7 +112,7 @@ function renderAdminView(string $view, array $dados = [], array $opcoes = [])
 
     if (!file_exists($viewPath)) {
         http_response_code(500);
-        echo '<div class="admin-content p-5"><p class="text-danger">View nÃ£o encontrada: ' . adminEsc($view) . '</p></div>';
+        echo '<div class="admin-content p-5"><p class="text-danger">View não encontrada: ' . adminEsc($view) . '</p></div>';
     } else {
         include $viewPath;
     }
@@ -133,7 +133,7 @@ function adminRedirect(string $url, $success = null)
 
 function adminMensagemSucesso($chave, array $mapa): string
 {
-    return $mapa[$chave ?? ''] ?? 'OperaÃ§Ã£o realizada com sucesso!';
+    return $mapa[$chave ?? ''] ?? 'Operação realizada com sucesso!';
 }
 
 function adminUploadExiste($arquivo): bool
@@ -230,11 +230,11 @@ function adminProcessarUpload(array $arquivo, string $prefixo = 'img_'): array
     $extensao = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
 
     if (!in_array($extensao, ADMIN_UPLOAD_EXTENSIONS, true)) {
-        return ['arquivo' => '', 'erro' => 'Formato invÃ¡lido. Use: JPG, PNG, GIF ou WEBP.'];
+        return ['arquivo' => '', 'erro' => 'Formato inválido. Use: JPG, PNG, GIF ou WEBP.'];
     }
 
     if (($arquivo['size'] ?? 0) > ADMIN_UPLOAD_MAX_SIZE) {
-        return ['arquivo' => '', 'erro' => 'Arquivo muito grande. MÃ¡ximo 5MB.'];
+        return ['arquivo' => '', 'erro' => 'Arquivo muito grande. Máximo 5MB.'];
     }
 
     if (!is_dir(ADMIN_UPLOAD_DIR)) {
@@ -268,7 +268,7 @@ function adminNivelPercentual(string $nivel): int
         return 85;
     } elseif (str_contains($nivelLower, 'inter')) {
         return 70;
-    } elseif (str_contains($nivelLower, 'bÃ¡s') || str_contains($nivelLower, 'bas')) {
+    } elseif (str_contains($nivelLower, 'bás') || str_contains($nivelLower, 'bas')) {
         return 50;
     } else {
         return 60;

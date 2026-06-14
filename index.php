@@ -8,23 +8,23 @@ require_once 'controllers/ContactController.php';
 $portfolio = new PortfolioController($conn);
 $contato   = new ContactController($conn);
 
-// Processa formulÃ¡rio de contato (padrÃ£o PRG)
+// Processa formulário de contato (padrão PRG)
 $contato->processarFormulario();
 $mensagens = $contato->recuperarMensagens();
 
-// Carrega dados da pÃ¡gina inicial
+// Carrega dados da página inicial
 $dados = $portfolio->carregarPaginaInicial();
 extract($dados);
 
-// Tecnologias Ãºnicas para filtro de projetos
+// Tecnologias únicas para filtro de projetos
 $tecnologias_projeto = $portfolio->extrairTecnologiasUnicas($projetos);
 
-// Mensagens do formulÃ¡rio de contato
+// Mensagens do formulário de contato
 $msg_success       = $mensagens['msg_success'];
 $msg_error         = $mensagens['msg_error'];
 $scroll_to_contato = $mensagens['scroll_to_contato'];
 
-// SEO bÃ¡sico: title, description e keywords da pÃ¡gina inicial
+// SEO básico: title, description e keywords da página inicial
 extract($portfolio->seoPaginaInicial($dados));
 
 include 'includes/header.php';

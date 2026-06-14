@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
@@ -24,12 +24,14 @@ class ContatoController
         }
 
         $erro    = '';
-        $sucesso = '';
+        $sucesso = ($_GET['success'] ?? '') === 'updated' ? 'Informações de contato atualizadas com sucesso!' : '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado = $this->atualizar((int) $contato['id'], $_POST);
+            if ($resultado['sucesso'] !== '') {
+                adminRedirect(adminWebPath() . 'contato', 'updated');
+            }
             $erro      = $resultado['erro'];
-            $sucesso   = $resultado['sucesso'];
             $contato   = dbFetchOne($this->conn, 'SELECT * FROM contato LIMIT 1') ?? $contato;
         }
 
@@ -48,7 +50,7 @@ class ContatoController
         $mensagem = adminSanitizar($post['mensagem'] ?? '');
 
         if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return ['erro' => 'Informe um e-mail vÃ¡lido.', 'sucesso' => ''];
+            return ['erro' => 'Informe um e-mail válido.', 'sucesso' => ''];
         }
 
         $ok = dbExecute(
@@ -59,8 +61,8 @@ class ContatoController
         );
 
         return $ok
-            ? ['erro' => '', 'sucesso' => 'InformaÃ§Ãµes de contato atualizadas com sucesso!']
-            : ['erro' => 'Erro ao salvar informaÃ§Ãµes de contato.', 'sucesso' => ''];
+            ? ['erro' => '', 'sucesso' => 'Informações de contato atualizadas com sucesso!']
+            : ['erro' => 'Erro ao salvar informações de contato.', 'sucesso' => ''];
     }
 }
 

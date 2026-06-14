@@ -4,7 +4,7 @@
     <div class="d-flex align-items-center gap-3 mb-5">
         <div>
             <h1 class="fw-black mb-0 fs-3">Editar Sobre Mim</h1>
-            <p class="text-muted-custom mb-0 small">Sua biografia, resumo e estatÃ­sticas</p>
+            <p class="text-muted-custom mb-0 small">Sua biografia, resumo e estatísticas</p>
         </div>
     </div>
 
@@ -17,13 +17,13 @@
                     <h5 class="fw-bold mb-4 text-gradient">Textos Principais</h5>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">TÃ­tulo da SeÃ§Ã£o *</label>
+                        <label class="form-label-custom">Título da Seção *</label>
                         <input type="text" name="titulo" class="form-control form-control-admin"
                                value="<?= adminEsc($titulo ?? $sobre['titulo']) ?>" required>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">DescriÃ§Ã£o Curta (Resumo)</label>
+                        <label class="form-label-custom">Descrição Curta (Resumo)</label>
                         <textarea name="descricao" class="form-control form-control-admin" rows="3"><?= adminEsc($descricao ?? $sobre['descricao'] ?? '') ?></textarea>
                     </div>
 
@@ -39,13 +39,13 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary-custom btn-custom btn-lg">
-                    <i class="bi bi-check-circle me-2"></i>Salvar AlteraÃ§Ãµes
+                    <i class="bi bi-check-circle me-2"></i>Salvar Alterações
                 </button>
             </div>
 
             <div class="col-lg-4">
                                 <div class="glass p-4 rounded-4 text-center mb-4">
-                    <h5 class="fw-bold mb-4 text-gradient">Foto da SeÃ§Ã£o</h5>
+                    <h5 class="fw-bold mb-4 text-gradient">Foto da Seção</h5>
                     <div class="mb-3">
                         <?php if (adminUploadExiste($sobre['foto'] ?? '')): ?>
                             <img src="<?= adminEsc(adminUploadSrc($sobre['foto'])) ?>" alt="Foto Sobre" class="mb-3 border" style="width: 200px; height: 200px; object-fit: cover; border-radius: 20px; border-color: rgba(124,58,237,0.5) !important;">
@@ -59,28 +59,28 @@
                         <label class="form-label-custom text-start d-block">Alterar Foto (Recomendado 500x500)</label>
                         <input type="file" name="foto" class="form-control form-control-admin" accept="image/*">
                     </div>
-                    <p class="small text-muted-custom mb-0">Esta foto aparece ao lado do texto na seÃ§Ã£o "Sobre Mim".</p>
+                    <p class="small text-muted-custom mb-0">Esta foto aparece ao lado do texto na seção "Sobre Mim".</p>
                 </div>
 
                                 <div class="glass p-4 rounded-4 text-center">
-                    <h5 class="fw-bold mb-4 text-gradient">EstatÃ­sticas</h5>
-                    <p class="text-muted-custom small mb-4">Esses nÃºmeros aparecem nos blocos da seÃ§Ã£o sobre vocÃª.</p>
+                    <h5 class="fw-bold mb-4 text-gradient">Estatísticas</h5>
+                    <p class="text-muted-custom small mb-4">Esses números aparecem nos blocos da seção sobre você.</p>
 
                     <div class="mb-4 text-start">
-                        <label class="form-label-custom">Anos de ExperiÃªncia</label>
+                        <label class="form-label-custom">Anos de Experiência</label>
                         <input type="text" name="experiencia" class="form-control form-control-admin text-center fs-4 fw-bold"
                                value="<?= adminEsc($experiencia ?? $sobre['experiencia'] ?? '') ?>" placeholder="ex: 3+">
                     </div>
 
                     <div class="mb-4 text-start">
-                        <label class="form-label-custom">Projetos ConcluÃ­dos</label>
+                        <label class="form-label-custom">Projetos Concluídos</label>
                         <input type="text" name="projetos_count" class="form-control form-control-admin text-center fs-4 fw-bold"
                                value="<?= adminEsc($projetos_count ?? $sobre['projetos_count'] ?? '') ?>" placeholder="ex: 20+">
                     </div>
 
                     <div class="mt-5 p-3 rounded-3" style="background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.2);">
                         <i class="bi bi-info-circle text-primary-light mb-2 fs-4"></i>
-                        <p class="small text-muted-custom mb-0">A contagem de Tecnologias Ã© calculada automaticamente baseada nos itens cadastrados.</p>
+                        <p class="small text-muted-custom mb-0">A contagem de Tecnologias é calculada automaticamente baseada nos itens cadastrados.</p>
                     </div>
                 </div>
             </div>

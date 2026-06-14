@@ -44,7 +44,7 @@ class ContactController
             exit;
         }
 
-        $_SESSION['contato_error'] = 'Por favor, preencha todos os campos obrigatÃ³rios com informaÃ§Ãµes vÃ¡lidas.';
+        $_SESSION['contato_error'] = 'Por favor, preencha todos os campos obrigatórios com informações válidas.';
         header('Location: ' . siteUrl('?contato=erro'));
         exit;
     }

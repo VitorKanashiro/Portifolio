@@ -24,7 +24,7 @@
                                    value="<?= adminEsc($plataforma ?? $rede['plataforma']) ?>" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label-custom">Ordem de exibiÃ§Ã£o</label>
+                            <label class="form-label-custom">Ordem de exibição</label>
                             <input type="number" name="ordem" class="form-control form-control-admin"
                                    value="<?= (int) ($ordem ?? $rede['ordem']) ?>">
                         </div>
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">Ãcone (Bootstrap Icons) *</label>
+                        <label class="form-label-custom">ícone (Bootstrap Icons) *</label>
                         <div class="position-relative">
                             <i id="icon-preview" class="bi <?= adminEsc($icone ?? $rede['icone']) ?> position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:1.1rem;"></i>
                             <input type="text" name="icone" id="iconeInput" class="form-control form-control-admin"
@@ -64,7 +64,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary-custom btn-custom btn-lg">
-                    <i class="bi bi-check-circle me-2"></i>Salvar AlteraÃ§Ãµes
+                    <i class="bi bi-check-circle me-2"></i>Salvar Alterações
                 </button>
                 <button type="button" onclick="confirmDelete('<?= adminEsc($adminBase) ?>redes/excluir?id=<?= (int) $id ?>', '<?= adminEsc(addslashes($rede['plataforma'])) ?>')"
                         class="btn btn-custom btn-lg ms-2" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171;">
