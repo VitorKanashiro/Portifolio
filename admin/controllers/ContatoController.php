@@ -1,22 +1,18 @@
-<?php
-/**
- * admin/controllers/ContatoController.php
- * Edição das informações de contato exibidas no site.
- * (Diferente do ContactController público em controllers/ContactController.php)
- */
+﻿<?php
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class ContatoController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    public function editar(): void
+    public function editar()
     {
         exigirAutenticacao();
 
@@ -52,7 +48,7 @@ class ContatoController
         $mensagem = adminSanitizar($post['mensagem'] ?? '');
 
         if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return ['erro' => 'Informe um e-mail válido.', 'sucesso' => ''];
+            return ['erro' => 'Informe um e-mail vÃ¡lido.', 'sucesso' => ''];
         }
 
         $ok = dbExecute(
@@ -63,7 +59,9 @@ class ContatoController
         );
 
         return $ok
-            ? ['erro' => '', 'sucesso' => 'Informações de contato atualizadas com sucesso!']
-            : ['erro' => 'Erro ao salvar informações de contato.', 'sucesso' => ''];
+            ? ['erro' => '', 'sucesso' => 'InformaÃ§Ãµes de contato atualizadas com sucesso!']
+            : ['erro' => 'Erro ao salvar informaÃ§Ãµes de contato.', 'sucesso' => ''];
     }
 }
+
+

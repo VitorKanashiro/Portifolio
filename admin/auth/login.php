@@ -1,8 +1,8 @@
-<?php
-/**
- * admin/auth/login.php — Ponto de entrada do login (apenas orquestração).
- */
+﻿<?php
+// Autenticacao do administrador
 require_once dirname(__DIR__) . '/bootstrap.php';
 require_once dirname(__DIR__) . '/controllers/LoginController.php';
 
 (new LoginController($conn))->exibirLogin();
+
+

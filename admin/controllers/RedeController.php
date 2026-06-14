@@ -1,21 +1,18 @@
-<?php
-/**
- * admin/controllers/RedeController.php
- * CRUD de redes sociais.
- */
+﻿<?php
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class RedeController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    public function listar(): void
+    public function listar()
     {
         exigirAutenticacao();
 
@@ -28,12 +25,12 @@ class RedeController
             'sucesso_get' => $sucesso ? adminMensagemSucesso($sucesso, [
                 'created' => 'Rede social adicionada!',
                 'updated' => 'Rede social atualizada!',
-                'deleted' => 'Rede social excluída!',
+                'deleted' => 'Rede social excluÃ­da!',
             ]) : '',
         ], ['page_title' => 'Redes Sociais | Admin']);
     }
 
-    public function criar(): void
+    public function criar()
     {
         exigirAutenticacao();
 
@@ -55,7 +52,7 @@ class RedeController
         ], $dados), ['page_title' => 'Nova Rede Social | Admin']);
     }
 
-    public function editar(): void
+    public function editar()
     {
         exigirAutenticacao();
 
@@ -89,7 +86,7 @@ class RedeController
         ], ['page_title' => 'Editar Rede Social | Admin']);
     }
 
-    public function excluir(): void
+    public function excluir()
     {
         exigirAutenticacao();
 
@@ -166,12 +163,14 @@ class RedeController
     private function validar(array $dados): string
     {
         if ($dados['plataforma'] === '') {
-            return 'O nome da plataforma é obrigatório.';
+            return 'O nome da plataforma Ã© obrigatÃ³rio.';
         }
         if ($dados['link'] === '') {
-            return 'O link é obrigatório e deve ser uma URL válida.';
+            return 'O link Ã© obrigatÃ³rio e deve ser uma URL vÃ¡lida.';
         }
 
         return '';
     }
 }
+
+

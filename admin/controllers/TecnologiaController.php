@@ -1,21 +1,18 @@
-<?php
-/**
- * admin/controllers/TecnologiaController.php
- * CRUD de tecnologias com prepared statements.
- */
+﻿<?php
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class TecnologiaController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    public function listar(): void
+    public function listar()
     {
         exigirAutenticacao();
 
@@ -31,17 +28,17 @@ class TecnologiaController
             'sucesso_get' => $sucesso ? adminMensagemSucesso($sucesso, [
                 'created' => 'Tecnologia criada!',
                 'updated' => 'Tecnologia atualizada!',
-                'deleted' => 'Tecnologia excluída!',
+                'deleted' => 'Tecnologia excluÃ­da!',
             ]) : '',
         ], ['page_title' => 'Tecnologias | Admin']);
     }
 
-    public function criar(): void
+    public function criar()
     {
         exigirAutenticacao();
 
         $erro = '';
-        $dados = ['nome' => '', 'icone' => '', 'nivel' => 'Intermediário'];
+        $dados = ['nome' => '', 'icone' => '', 'nivel' => 'IntermediÃ¡rio'];
         $iconesSugeridos = $this->iconesSugeridos();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -59,7 +56,7 @@ class TecnologiaController
         ], $dados), ['page_title' => 'Nova Tecnologia | Admin']);
     }
 
-    public function editar(): void
+    public function editar()
     {
         exigirAutenticacao();
 
@@ -93,7 +90,7 @@ class TecnologiaController
         ], ['page_title' => 'Editar Tecnologia | Admin']);
     }
 
-    public function excluir(): void
+    public function excluir()
     {
         exigirAutenticacao();
 
@@ -108,7 +105,7 @@ class TecnologiaController
     private function inserir(array $post): array
     {
         $dados = $this->extrairDados($post);
-        $erro  = $dados['nome'] === '' ? 'O nome é obrigatório.' : '';
+        $erro  = $dados['nome'] === '' ? 'O nome Ã© obrigatÃ³rio.' : '';
 
         if ($erro !== '') {
             return ['redirect' => false, 'erro' => $erro, 'dados' => $dados];
@@ -131,7 +128,7 @@ class TecnologiaController
     private function atualizar(int $id, array $post): array
     {
         $dados = $this->extrairDados($post);
-        $erro  = $dados['nome'] === '' ? 'O nome é obrigatório.' : '';
+        $erro  = $dados['nome'] === '' ? 'O nome Ã© obrigatÃ³rio.' : '';
 
         if ($erro !== '') {
             return ['redirect' => false, 'erro' => $erro, 'dados' => $dados];
@@ -153,11 +150,11 @@ class TecnologiaController
 
     private function extrairDados(array $post): array
     {
-        $niveisValidos = ['Básico', 'Intermediário', 'Avançado', 'Expert'];
-        $nivel = adminSanitizar($post['nivel'] ?? 'Intermediário');
+        $niveisValidos = ['BÃ¡sico', 'IntermediÃ¡rio', 'AvanÃ§ado', 'Expert'];
+        $nivel = adminSanitizar($post['nivel'] ?? 'IntermediÃ¡rio');
 
         if (!in_array($nivel, $niveisValidos, true)) {
-            $nivel = 'Intermediário';
+            $nivel = 'IntermediÃ¡rio';
         }
 
         return [
@@ -177,3 +174,5 @@ class TecnologiaController
         ];
     }
 }
+
+

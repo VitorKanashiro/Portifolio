@@ -1,52 +1,43 @@
-<?php
-/**
- * controllers/PortfolioController.php
- * Responsável por todas as consultas ao banco relacionadas ao portfólio público.
- * Centraliza a lógica de dados para manter as views (sections) apenas com HTML.
- */
+﻿<?php
+// Controlador do portfólio
 
 require_once dirname(__DIR__) . '/includes/helpers.php';
 
 class PortfolioController
 {
-    /** @var mysqli Conexão ativa com o MySQL */
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    // ─────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // CONSULTAS AO BANCO DE DADOS
-    // ─────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    /** Busca o perfil principal (seção Hero). */
-    public function buscarPerfil(): array
+        public function buscarPerfil(): array
     {
         $resultado = mysqli_query($this->conn, 'SELECT * FROM perfil LIMIT 1');
 
         return mysqli_fetch_assoc($resultado) ?: [];
     }
 
-    /** Busca informações da seção Sobre. */
-    public function buscarSobre(): array
+        public function buscarSobre(): array
     {
         $resultado = mysqli_query($this->conn, 'SELECT * FROM sobre LIMIT 1');
 
         return mysqli_fetch_assoc($resultado) ?: [];
     }
 
-    /** Busca dados de contato exibidos na seção Contato. */
-    public function buscarContato(): array
+        public function buscarContato(): array
     {
         $resultado = mysqli_query($this->conn, 'SELECT * FROM contato LIMIT 1');
 
         return mysqli_fetch_assoc($resultado) ?: [];
     }
 
-    /** Lista todos os projetos ordenados por destaque e data. */
-    public function buscarProjetos(): array
+        public function buscarProjetos(): array
     {
         $resultado = mysqli_query(
             $this->conn,
@@ -56,8 +47,7 @@ class PortfolioController
         return mysqli_fetch_all($resultado, MYSQLI_ASSOC) ?: [];
     }
 
-    /** Lista tecnologias ordenadas por nível de proficiência. */
-    public function buscarTecnologias(): array
+        public function buscarTecnologias(): array
     {
         $resultado = mysqli_query(
             $this->conn,
@@ -67,8 +57,7 @@ class PortfolioController
         return mysqli_fetch_all($resultado, MYSQLI_ASSOC) ?: [];
     }
 
-    /** Lista redes sociais ativas ordenadas. */
-    public function buscarRedesSociais(): array
+        public function buscarRedesSociais(): array
     {
         $resultado = mysqli_query(
             $this->conn,
@@ -78,8 +67,7 @@ class PortfolioController
         return mysqli_fetch_all($resultado, MYSQLI_ASSOC) ?: [];
     }
 
-    /** Busca um projeto específico pelo ID numérico. */
-    public function buscarProjetoPorId(int $id): ?array
+        public function buscarProjetoPorId(int $id)
     {
         $id        = (int) $id;
         $resultado = mysqli_query($this->conn, "SELECT * FROM projetos WHERE id = '$id' LIMIT 1");
@@ -88,8 +76,7 @@ class PortfolioController
         return $projeto ?: null;
     }
 
-    /** Busca um projeto pelo slug amigável gerado a partir do título. */
-    public function buscarProjetoPorSlug(string $slug): ?array
+        public function buscarProjetoPorSlug(string $slug)
     {
         $projetos = $this->buscarProjetos();
 
@@ -102,15 +89,11 @@ class PortfolioController
         return null;
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // DADOS COMBINADOS PARA A PÁGINA INICIAL
-    // ─────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // DADOS COMBINADOS PARA A PÃGINA INICIAL
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    /**
-     * Carrega todos os dados necessários para a página inicial (index.php).
-     * Retorna um array associativo pronto para uso nas sections.
-     */
-    public function carregarPaginaInicial(): array
+        public function carregarPaginaInicial(): array
     {
         $perfil      = $this->buscarPerfil();
         $dadosPerfil = $this->normalizarPerfil($perfil);
@@ -126,26 +109,20 @@ class PortfolioController
         ]);
     }
 
-    /**
-     * Aplica valores padrão ao perfil quando campos estão vazios no banco.
-     */
-    public function normalizarPerfil(array $perfil): array
+        public function normalizarPerfil(array $perfil): array
     {
         return [
             'nome'     => $perfil['nome']      ?? 'Desenvolvedor Full Stack',
             'cargo'    => $perfil['cargo']     ?? 'Desenvolvedor Full Stack',
-            'frase'    => $perfil['frase']     ?? 'Transformando ideias em código.',
-            'sub'      => $perfil['subtitulo'] ?? 'Criando soluções web modernas e escaláveis.',
+            'frase'    => $perfil['frase']     ?? 'Transformando ideias em cÃ³digo.',
+            'sub'      => $perfil['subtitulo'] ?? 'Criando soluÃ§Ãµes web modernas e escalÃ¡veis.',
             'github'   => $perfil['github']    ?? '#',
             'linkedin' => $perfil['linkedin']  ?? '#',
             'foto'     => $perfil['foto']      ?? '',
         ];
     }
 
-    /**
-     * Extrai lista única de tecnologias usadas nos projetos (para filtros).
-     */
-    public function extrairTecnologiasUnicas(array $projetos, int $limite = 6): array
+        public function extrairTecnologiasUnicas(array $projetos, int $limite = 6): array
     {
         $tecnologias = [];
 
@@ -162,66 +139,58 @@ class PortfolioController
         return array_slice(array_keys($tecnologias), 0, $limite);
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // URLs amigáveis dos projetos
-    // ─────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // URLs amigÃ¡veis dos projetos
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    /** Gera slug único para um projeto (título + id para evitar duplicatas). */
-    public function gerarSlugProjeto(array $projeto): string
+        public function gerarSlugProjeto(array $projeto): string
     {
         return gerarSlugProjeto($projeto);
     }
 
-    /** Retorna URL amigável do projeto (ex: /portifolio-1/projeto/sistema-de-portfolio-1). */
-    public function urlProjeto(array $projeto): string
+        public function urlProjeto(array $projeto): string
     {
         return urlProjeto($projeto);
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // SEO BÁSICO — title, description e keywords por página
-    // ─────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // SEO BÃSICO â€” title, description e keywords por pÃ¡gina
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    /**
-     * SEO da página inicial.
-     * Exemplo de title: "João Silva | Desenvolvedor Full Stack"
-     */
-    public function seoPaginaInicial(array $dados): array
+        public function seoPaginaInicial(array $dados): array
     {
-        $nome  = $dados['nome']  ?? 'Portfólio';
+        $nome  = $dados['nome']  ?? 'PortfÃ³lio';
         $cargo = $dados['cargo'] ?? 'Desenvolvedor';
         $sub   = $dados['sub']   ?? '';
 
         $descricao = $sub !== ''
             ? $sub
-            : 'Portfólio de ' . $nome . ', estudante de ADS e desenvolvedor focado em criar soluções modernas e eficientes.';
+            : 'PortfÃ³lio de ' . $nome . ', estudante de ADS e desenvolvedor focado em criar soluÃ§Ãµes modernas e eficientes.';
 
         return [
             'page_title'    => $nome . ' | ' . $cargo,
             'page_desc'     => $descricao,
-            'page_keywords' => $nome . ', ADS, Desenvolvedor, PHP, MySQL, Bootstrap, Portfólio, ' . $cargo,
+            'page_keywords' => $nome . ', ADS, Desenvolvedor, PHP, MySQL, Bootstrap, PortfÃ³lio, ' . $cargo,
         ];
     }
 
-    /**
-     * SEO da página de detalhes de um projeto.
-     * Exemplo de title: "Sistema de Biblioteca | João Silva"
-     */
-    public function seoPaginaProjeto(array $projeto, array $perfil): array
+        public function seoPaginaProjeto(array $projeto, array $perfil): array
     {
-        $nomePerfil = $perfil['nome'] ?? 'Portfólio';
+        $nomePerfil = $perfil['nome'] ?? 'PortfÃ³lio';
         $titulo     = $projeto['titulo'] ?? 'Projeto';
         $descricao  = mb_substr($projeto['descricao'] ?? '', 0, 160);
         $techs      = $projeto['tecnologias'] ?? '';
 
         if ($descricao === '') {
-            $descricao = 'Detalhes do projeto ' . $titulo . ' no portfólio de ' . $nomePerfil . '.';
+            $descricao = 'Detalhes do projeto ' . $titulo . ' no portfÃ³lio de ' . $nomePerfil . '.';
         }
 
         return [
             'page_title'    => $titulo . ' | ' . $nomePerfil,
             'page_desc'     => $descricao,
-            'page_keywords' => $titulo . ', ' . $techs . ', projeto, portfólio, ' . $nomePerfil,
+            'page_keywords' => $titulo . ', ' . $techs . ', projeto, portfÃ³lio, ' . $nomePerfil,
         ];
     }
 }
+
+

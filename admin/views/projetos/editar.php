@@ -1,7 +1,8 @@
-<?php /** View: editar projeto */ ?>
+<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
     <div class="d-flex align-items-center gap-3 mb-5">
-        <a href="<?= adminEsc($adminBase) ?>projetos/index.php" class="btn btn-outline-custom btn-custom" style="padding:0.5rem 0.9rem;">
+        <a href="<?= adminEsc($adminBase) ?>projetos" class="btn btn-outline-custom btn-custom" style="padding:0.5rem 0.9rem;">
             <i class="bi bi-arrow-left"></i>
         </a>
         <div>
@@ -16,19 +17,19 @@
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="glass p-4 rounded-4 mb-4">
-                    <h5 class="fw-bold mb-4 text-gradient">Informações do Projeto</h5>
+                    <h5 class="fw-bold mb-4 text-gradient">InformaÃ§Ãµes do Projeto</h5>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">Título *</label>
+                        <label class="form-label-custom">TÃ­tulo *</label>
                         <input type="text" name="titulo" class="form-control form-control-admin"
                                value="<?= adminEsc($titulo ?? $proj['titulo']) ?>" required>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label-custom">Descrição</label>
+                        <label class="form-label-custom">DescriÃ§Ã£o</label>
                         <textarea name="descricao" class="form-control form-control-admin" rows="5"><?= adminEsc($descricao ?? $proj['descricao']) ?></textarea>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label-custom">Tecnologias (separadas por vírgula)</label>
+                        <label class="form-label-custom">Tecnologias (separadas por vÃ­rgula)</label>
                         <input type="text" name="tecnologias" class="form-control form-control-admin"
                                value="<?= adminEsc($tecnologias ?? $proj['tecnologias']) ?>">
                     </div>
@@ -83,11 +84,11 @@
 
                     <input type="file" name="imagem" id="imageInput" class="form-control form-control-admin mt-3"
                            accept="image/*" data-preview="img-preview">
-                    <small class="text-muted-custom d-block mt-2">JPG, PNG, WEBP · Máx. 5MB</small>
+                    <small class="text-muted-custom d-block mt-2">JPG, PNG, WEBP Â· MÃ¡x. 5MB</small>
                 </div>
 
                 <div class="glass p-4 rounded-4 mb-4">
-                    <h5 class="fw-bold mb-4 text-gradient">Configurações</h5>
+                    <h5 class="fw-bold mb-4 text-gradient">ConfiguraÃ§Ãµes</h5>
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <label class="fw-semibold d-block mb-1">Projeto em Destaque</label>
@@ -102,9 +103,9 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary-custom btn-custom w-100 btn-lg mb-2">
-                    <i class="bi bi-check-circle me-2"></i>Salvar Alterações
+                    <i class="bi bi-check-circle me-2"></i>Salvar AlteraÃ§Ãµes
                 </button>
-                <button type="button" onclick="confirmDelete('<?= adminEsc($adminBase) ?>projetos/excluir.php?id=<?= (int) $id ?>', '<?= adminEsc(addslashes($proj['titulo'])) ?>')"
+                <button type="button" onclick="confirmDelete('<?= adminEsc($adminBase) ?>projetos/excluir?id=<?= (int) $id ?>', '<?= adminEsc(addslashes($proj['titulo'])) ?>')"
                         class="btn btn-custom w-100" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171;">
                     <i class="bi bi-trash me-2"></i>Excluir Projeto
                 </button>
@@ -123,3 +124,5 @@ document.getElementById('imageInput').addEventListener('change', function() {
     }
 });
 </script>
+
+

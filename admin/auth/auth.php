@@ -1,18 +1,10 @@
-<?php
-/**
- * admin/auth/auth.php
- * Middleware de autenticação — protege páginas administrativas.
- *
- * Uso: require_once e chamar exigirAutenticacao() no início de cada página protegida.
- */
+﻿<?php
+// Autenticacao do administrador
 
 require_once dirname(__DIR__) . '/config/admin_config.php';
 require_once dirname(__DIR__) . '/helpers/admin_helpers.php';
 
-/**
- * Inicia a sessão do admin com configurações seguras.
- */
-function iniciarSessaoAdmin(): void
+function iniciarSessaoAdmin()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
         return;
@@ -31,11 +23,7 @@ function iniciarSessaoAdmin(): void
     session_start();
 }
 
-/**
- * Verifica timeout da sessão com base na última atividade.
- * Protege contra sessões abandonadas.
- */
-function verificarTimeoutSessao(): void
+function verificarTimeoutSessao()
 {
     $agora = time();
 
@@ -48,11 +36,7 @@ function verificarTimeoutSessao(): void
     $_SESSION['last_activity'] = $agora;
 }
 
-/**
- * Middleware principal: exige login para acessar a página.
- * Redireciona para login se não autenticado.
- */
-function exigirAutenticacao(): void
+function exigirAutenticacao()
 {
     iniciarSessaoAdmin();
     verificarTimeoutSessao();
@@ -64,9 +48,6 @@ function exigirAutenticacao(): void
     }
 }
 
-/**
- * Verifica se o admin já está logado (para página de login).
- */
 function adminJaLogado(): bool
 {
     iniciarSessaoAdmin();
@@ -75,11 +56,7 @@ function adminJaLogado(): bool
     return !empty($_SESSION['admin_id']);
 }
 
-/**
- * Registra dados do admin na sessão após login bem-sucedido.
- * Regenera ID da sessão para prevenir Session Fixation.
- */
-function registrarSessaoAdmin(array $admin): void
+function registrarSessaoAdmin(array $admin)
 {
     iniciarSessaoAdmin();
 
@@ -91,10 +68,7 @@ function registrarSessaoAdmin(array $admin): void
     $_SESSION['last_activity']  = time();
 }
 
-/**
- * Encerra a sessão do admin de forma segura.
- */
-function encerrarSessaoAdmin(): void
+function encerrarSessaoAdmin()
 {
     iniciarSessaoAdmin();
 
@@ -116,10 +90,9 @@ function encerrarSessaoAdmin(): void
     session_destroy();
 }
 
-/**
- * Retorna e-mail do admin logado.
- */
 function adminEmailLogado(): string
 {
     return $_SESSION['admin_email'] ?? 'Admin';
 }
+
+

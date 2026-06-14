@@ -1,8 +1,5 @@
-<?php
-/**
- * admin/includes/admin_footer.php
- * Rodapé do admin: modal de exclusão, toasts e scripts.
- */
+﻿<?php
+// Componente do admin
 ?>
 <div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;"></div>
 
@@ -13,8 +10,8 @@
                 <div class="mb-3" style="font-size: 3rem; color: #ef4444;">
                     <i class="bi bi-exclamation-triangle" aria-hidden="true"></i>
                 </div>
-                <h5 class="fw-bold mb-2">Confirmar Exclusão</h5>
-                <p class="text-muted-custom mb-4">Deseja excluir <strong id="deleteItemName">este item</strong>? Esta ação não pode ser desfeita.</p>
+                <h5 class="fw-bold mb-2">Confirmar ExclusÃ£o</h5>
+                <p class="text-muted-custom mb-4">Deseja excluir <strong id="deleteItemName">este item</strong>? Esta aÃ§Ã£o nÃ£o pode ser desfeita.</p>
                 <div class="d-flex gap-2">
                     <button type="button" class="btn btn-outline-custom btn-custom flex-fill" data-bs-dismiss="modal">Cancelar</button>
                     <a id="deleteConfirmBtn" href="#" class="btn flex-fill btn-custom"
@@ -32,3 +29,5 @@
 <?= $extraScripts ?? '' ?>
 </body>
 </html>
+
+

@@ -1,12 +1,5 @@
-/* ============================================================
-   PORTFOLIO - Main Stylesheet
-   Dark Mode + Glassmorphism + Modern SaaS Design
-   ============================================================ */
-
-/* --- Google Fonts --- */
+﻿/* Estilos globais do portfolio e admin */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-/* --- CSS Variables --- */
 :root {
     --primary: #7c3aed;
     --primary-light: #9d5cf5;
@@ -32,9 +25,9 @@
     --sidebar-width: 260px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* --- Reset & Base --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -51,14 +44,23 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
 
-/* --- Scrollbar --- */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
-::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+}
 
-/* --- Typography Utilities --- */
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}
 .text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -66,7 +68,9 @@ body {
     background-clip: text;
 }
 
-.text-muted-custom { color: var(--text-muted) !important; }
+.text-muted-custom {
+    color: var(--text-muted) !important;
+}
 
 .section-title {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -90,8 +94,6 @@ body {
     background: var(--gradient-primary);
     border-radius: 2px;
 }
-
-/* --- Glassmorphism --- */
 .glass {
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);
@@ -106,9 +108,6 @@ body {
     -webkit-backdrop-filter: blur(20px);
 }
 
-/* ============================================================
-   NAVBAR
-   ============================================================ */
 .navbar {
     padding: 1rem 0;
     transition: var(--transition);
@@ -143,11 +142,13 @@ body {
     border-radius: 1px;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--text-primary) !important;
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
 }
 
@@ -155,9 +156,6 @@ body {
     filter: invert(1);
 }
 
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -193,8 +191,15 @@ body {
 }
 
 @keyframes pulse-orb {
-    0%, 100% { transform: scale(1) translate(0, 0); }
-    50% { transform: scale(1.1) translate(20px, -20px); }
+
+    0%,
+    100% {
+        transform: scale(1) translate(0, 0);
+    }
+
+    50% {
+        transform: scale(1.1) translate(20px, -20px);
+    }
 }
 
 .hero-avatar {
@@ -211,11 +216,16 @@ body {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-}
 
-/* --- Hero Buttons --- */
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
 .btn-primary-custom {
     background: var(--gradient-primary);
     border: none;
@@ -233,11 +243,14 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
     transition: var(--transition);
 }
 
-.btn-primary-custom:hover::before { left: 100%; }
+.btn-primary-custom:hover::before {
+    left: 100%;
+}
+
 .btn-primary-custom:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
@@ -270,25 +283,33 @@ body {
     gap: 0.5rem;
 }
 
-/* ============================================================
-   SECTIONS
-   ============================================================ */
 section {
     position: relative;
 }
 
-#sobre, #tecnologias, #projetos, #contato {
+#sobre,
+#tecnologias,
+#projetos,
+#contato {
     background: var(--bg-dark);
 }
 
-#sobre { background: linear-gradient(to bottom, var(--bg-dark), #0d0d1a); }
-#tecnologias { background: linear-gradient(to bottom, #0d0d1a, var(--bg-dark)); }
-#projetos { background: linear-gradient(to bottom, var(--bg-dark), #0a0f1e); }
-#contato { background: linear-gradient(to bottom, #0a0f1e, var(--bg-dark)); }
+#sobre {
+    background: linear-gradient(to bottom, var(--bg-dark), #0d0d1a);
+}
 
-/* ============================================================
-   TECH BADGES
-   ============================================================ */
+#tecnologias {
+    background: linear-gradient(to bottom, #0d0d1a, var(--bg-dark));
+}
+
+#projetos {
+    background: linear-gradient(to bottom, var(--bg-dark), #0a0f1e);
+}
+
+#contato {
+    background: linear-gradient(to bottom, #0a0f1e, var(--bg-dark));
+}
+
 .tech-badge {
     display: inline-flex;
     align-items: center;
@@ -312,8 +333,6 @@ section {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
 }
-
-/* --- Tech card with level bar --- */
 .tech-card {
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);
@@ -343,7 +362,7 @@ section {
 .tech-level-bar {
     height: 4px;
     border-radius: 2px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     margin-top: 0.75rem;
     overflow: hidden;
 }
@@ -355,15 +374,10 @@ section {
     transition: width 1s ease;
 }
 
-/* ============================================================
-   PROJECT DETAIL PAGE
-   ============================================================ */
 .projeto-page {
     background: var(--bg-dark);
     min-height: 100vh;
 }
-
-/* --- Hero --- */
 .projeto-hero {
     position: relative;
     padding: 9rem 0 5rem;
@@ -389,12 +403,10 @@ section {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(
-        180deg,
-        rgba(8, 8, 13, 0.4) 0%,
-        rgba(8, 8, 13, 0.85) 60%,
-        var(--bg-dark) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(8, 8, 13, 0.4) 0%,
+            rgba(8, 8, 13, 0.85) 60%,
+            var(--bg-dark) 100%);
 }
 
 .projeto-hero__inner {
@@ -476,8 +488,6 @@ section {
     background: rgba(124, 58, 237, 0.1);
     border-color: rgba(124, 58, 237, 0.3);
 }
-
-/* --- Conteúdo principal --- */
 .projeto-main {
     padding: 0 0 6rem;
     margin-top: -0.5rem;
@@ -530,8 +540,6 @@ section {
     line-height: 1.85;
     margin: 0;
 }
-
-/* --- Card de detalhes (sidebar) --- */
 .projeto-details {
     position: sticky;
     top: 106px;
@@ -652,9 +660,6 @@ section {
     }
 }
 
-/* ============================================================
-   PROJECT CARDS
-   ============================================================ */
 .project-card {
     border-radius: 20px;
     overflow: hidden;
@@ -680,7 +685,7 @@ section {
     left: 0;
     right: 0;
     height: 60px;
-    background: linear-gradient(transparent, rgba(10,10,15,0.9));
+    background: linear-gradient(transparent, rgba(10, 10, 15, 0.9));
 }
 
 .project-img {
@@ -694,9 +699,6 @@ section {
     transform: scale(1.08);
 }
 
-/* ============================================================
-   CONTACT SECTION
-   ============================================================ */
 .form-control-custom {
     background: var(--bg-glass) !important;
     border: 1px solid var(--border-glass) !important;
@@ -718,9 +720,6 @@ section {
     color: var(--text-muted-dark) !important;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
 footer {
     background: rgba(0, 0, 0, 0.5);
     border-top: 1px solid var(--border-glass);
@@ -749,12 +748,6 @@ footer {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
 }
-
-/* ============================================================
-   ADMIN AREA
-   ============================================================ */
-
-/* --- Admin Layout --- */
 .admin-sidebar {
     position: fixed;
     top: 0;
@@ -777,8 +770,6 @@ footer {
     background: var(--bg-dark);
     transition: var(--transition);
 }
-
-/* --- Sidebar Links --- */
 .sidebar-link {
     display: flex;
     align-items: center;
@@ -810,8 +801,6 @@ footer {
     width: 20px;
     text-align: center;
 }
-
-/* --- Admin Cards --- */
 .stat-card {
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);
@@ -835,8 +824,6 @@ footer {
     justify-content: center;
     font-size: 1.4rem;
 }
-
-/* --- Admin Tables --- */
 .table-dark-custom {
     color: var(--text-primary);
 }
@@ -865,8 +852,6 @@ footer {
     vertical-align: middle;
     border: none;
 }
-
-/* --- Login Page --- */
 .login-page {
     min-height: 100vh;
     display: flex;
@@ -896,10 +881,8 @@ footer {
     position: relative;
     z-index: 1;
 }
-
-/* --- Form Styles Admin --- */
 .form-control-admin {
-    background: rgba(255,255,255,0.05) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid var(--border-glass) !important;
     color: var(--text-primary) !important;
     border-radius: 12px !important;
@@ -910,13 +893,15 @@ footer {
 }
 
 .form-control-admin:focus {
-    background: rgba(255,255,255,0.08) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
     border-color: var(--primary) !important;
     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
     outline: none;
 }
 
-.form-control-admin::placeholder { color: var(--text-muted-dark) !important; }
+.form-control-admin::placeholder {
+    color: var(--text-muted-dark) !important;
+}
 
 select.form-control-admin {
     appearance: none;
@@ -944,8 +929,6 @@ select.form-control-admin option {
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
 }
-
-/* --- Alert Messages --- */
 .alert-custom {
     border-radius: 12px;
     border: none;
@@ -965,8 +948,6 @@ select.form-control-admin option {
     border: 1px solid rgba(239, 68, 68, 0.3);
     color: #f87171;
 }
-
-/* --- Badge Styles --- */
 .badge-level {
     font-size: 0.75rem;
     font-weight: 600;
@@ -974,12 +955,25 @@ select.form-control-admin option {
     border-radius: 50px;
 }
 
-.badge-iniciante { background: rgba(100, 116, 139, 0.3); color: #94a3b8; }
-.badge-intermediario { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-.badge-avancado { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
-.badge-expert { background: rgba(124, 58, 237, 0.2); color: #a78bfa; }
+.badge-iniciante {
+    background: rgba(100, 116, 139, 0.3);
+    color: #94a3b8;
+}
 
-/* --- Nivel Selector Buttons (admin) --- */
+.badge-intermediario {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+}
+
+.badge-avancado {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+}
+
+.badge-expert {
+    background: rgba(124, 58, 237, 0.2);
+    color: #a78bfa;
+}
 .nivel-option {
     cursor: pointer;
     flex: 1;
@@ -1005,13 +999,11 @@ select.form-control-admin option {
     box-shadow: 0 4px 15px var(--nv-bg);
 }
 
-.nivel-option input:checked + .nivel-label {
+.nivel-option input:checked+.nivel-label {
     border-color: var(--nv-color);
     box-shadow: 0 0 20px var(--nv-bg), inset 0 0 20px var(--nv-bg);
     transform: translateY(-2px);
 }
-
-/* --- Admin mobile top bar --- */
 .admin-mobile-bar {
     position: fixed;
     top: 0;
@@ -1048,8 +1040,6 @@ select.form-control-admin option {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-/* --- Mobile / tablet sidebar --- */
 @media (max-width: 991.98px) {
     .admin-sidebar {
         transform: translateX(-100%);
@@ -1077,8 +1067,6 @@ select.form-control-admin option {
         overflow: hidden;
     }
 }
-
-/* --- Sidebar overlay on mobile --- */
 .sidebar-overlay {
     display: none;
     position: fixed;
@@ -1086,14 +1074,14 @@ select.form-control-admin option {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 1035;
     backdrop-filter: blur(4px);
 }
 
-.sidebar-overlay.show { display: block; }
-
-/* --- Image Upload Preview --- */
+.sidebar-overlay.show {
+    display: block;
+}
 .img-preview {
     width: 100%;
     max-width: 200px;
@@ -1110,45 +1098,83 @@ select.form-control-admin option {
     object-fit: cover;
     border: 3px solid var(--primary);
 }
-
-/* --- Animations --- */
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-30px); }
-    to { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.animate-fadeInUp { animation: fadeInUp 0.6s ease forwards; }
-.animate-fadeIn { animation: fadeIn 0.5s ease forwards; }
-.animate-slideInLeft { animation: slideInLeft 0.5s ease forwards; }
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease forwards;
+}
 
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
-.delay-5 { animation-delay: 0.5s; }
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease forwards;
+}
 
-/* --- Toast --- */
+.animate-slideInLeft {
+    animation: slideInLeft 0.5s ease forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+.delay-4 {
+    animation-delay: 0.4s;
+}
+
+.delay-5 {
+    animation-delay: 0.5s;
+}
 .toast-container-custom {
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
     z-index: 9999;
 }
-
-/* --- Loading Spinner --- */
 .loading-overlay {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(10, 10, 15, 0.95);
     display: flex;
     align-items: center;
@@ -1166,10 +1192,10 @@ select.form-control-admin option {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
-
-/* --- Responsive Utilities --- */
 @media (max-width: 768px) {
     .hero-avatar {
         width: 220px;
@@ -1180,14 +1206,10 @@ select.form-control-admin option {
         font-size: 1.8rem;
     }
 }
-
-/* --- Table hover effects --- */
 .table-hover-row:hover {
     background: var(--bg-glass-hover) !important;
     cursor: pointer;
 }
-
-/* --- Dark mode Toggle --- */
 .theme-toggle {
     width: 36px;
     height: 36px;
@@ -1206,10 +1228,8 @@ select.form-control-admin option {
     background: var(--bg-glass-hover);
     color: var(--text-primary);
 }
-
-/* --- Progress bar for skills --- */
 .skill-bar-wrapper {
-    background: rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.07);
     border-radius: 50px;
     height: 6px;
     overflow: hidden;
@@ -1223,8 +1243,6 @@ select.form-control-admin option {
     width: 0;
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* --- Sobre Section --- */
 .about-stats {
     display: flex;
     gap: 2rem;
@@ -1251,8 +1269,6 @@ select.form-control-admin option {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
-/* --- Sidebar logo area --- */
 .sidebar-logo {
     display: flex;
     align-items: center;
@@ -1283,8 +1299,6 @@ select.form-control-admin option {
     padding: 0.5rem 1rem;
     margin-top: 0.5rem;
 }
-
-/* --- Project filter bar --- */
 .filter-btn {
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);
@@ -1297,13 +1311,12 @@ select.form-control-admin option {
     transition: var(--transition);
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
     background: rgba(124, 58, 237, 0.2);
     border-color: var(--primary);
     color: var(--primary-light);
 }
-
-/* --- Empty state --- */
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
@@ -1315,3 +1328,4 @@ select.form-control-admin option {
     margin-bottom: 1rem;
     opacity: 0.4;
 }
+

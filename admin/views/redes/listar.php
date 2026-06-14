@@ -1,4 +1,5 @@
-<?php /** View: listar redes sociais */ ?>
+﻿<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
     <div class="d-flex justify-content-between align-items-center mb-5">
         <div>
@@ -12,8 +13,7 @@
 
     <?php include __DIR__ . '/../partials/alertas.php'; ?>
 
-    <!-- Cards Grid -->
-    <?php if (!empty($redes)): ?>
+        <?php if (!empty($redes)): ?>
     <div class="row g-4">
         <?php foreach ($redes as $r): ?>
         <div class="col-sm-6 col-md-4 col-xl-3">
@@ -57,3 +57,5 @@
     </div>
     <?php endif; ?>
 </div>
+
+

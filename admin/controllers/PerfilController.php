@@ -1,21 +1,18 @@
-<?php
-/**
- * admin/controllers/PerfilController.php
- * Edição do perfil principal (seção Hero).
- */
+﻿<?php
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class PerfilController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    public function editar(): void
+    public function editar()
     {
         exigirAutenticacao();
 
@@ -54,7 +51,7 @@ class PerfilController
         $foto      = $perfil['foto'] ?? '';
 
         if ($nome === '') {
-            return ['erro' => 'O nome é obrigatório.', 'sucesso' => ''];
+            return ['erro' => 'O nome Ã© obrigatÃ³rio.', 'sucesso' => ''];
         }
 
         if (!empty($files['foto']['name'])) {
@@ -80,3 +77,5 @@ class PerfilController
             : ['erro' => 'Erro ao salvar perfil.', 'sucesso' => ''];
     }
 }
+
+

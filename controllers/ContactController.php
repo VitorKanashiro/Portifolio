@@ -1,25 +1,16 @@
 <?php
-/**
- * controllers/ContactController.php
- * Responsável pelo processamento do formulário de contato.
- * Utiliza o padrão PRG (Post-Redirect-Get) para evitar reenvio duplicado.
- */
+// Controlador do portfólio
 
 class ContactController
 {
-    /** @var mysqli Conexão ativa com o MySQL */
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    /**
-     * Processa o envio do formulário de contato (POST).
-     * Redireciona com mensagem de sucesso ou erro via sessão/GET.
-     */
-    public function processarFormulario(): void
+        public function processarFormulario()
     {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
@@ -43,26 +34,22 @@ class ContactController
                 mysqli_stmt_close($stmt);
 
                 if ($executou) {
-                    header('Location: ' . siteUrl('index.php?contato=ok'));
+                    header('Location: ' . siteUrl('?contato=ok'));
                     exit;
                 }
             }
 
             $_SESSION['contato_error'] = 'Erro ao enviar mensagem. Tente novamente.';
-            header('Location: ' . siteUrl('index.php?contato=erro'));
+            header('Location: ' . siteUrl('?contato=erro'));
             exit;
         }
 
-        $_SESSION['contato_error'] = 'Por favor, preencha todos os campos obrigatórios com informações válidas.';
-        header('Location: ' . siteUrl('index.php?contato=erro'));
+        $_SESSION['contato_error'] = 'Por favor, preencha todos os campos obrigatÃ³rios com informaÃ§Ãµes vÃ¡lidas.';
+        header('Location: ' . siteUrl('?contato=erro'));
         exit;
     }
 
-    /**
-     * Recupera mensagens flash após redirect do formulário.
-     * Retorna: msg_success, msg_error e scroll_to_contato.
-     */
-    public function recuperarMensagens(): array
+        public function recuperarMensagens(): array
     {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
@@ -92,3 +79,5 @@ class ContactController
         ];
     }
 }
+
+

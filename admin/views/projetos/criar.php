@@ -1,12 +1,13 @@
-<?php /** View: criar projeto */ ?>
+<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
     <div class="d-flex align-items-center gap-3 mb-5">
-        <a href="<?= adminEsc($adminBase) ?>projetos/index.php" class="btn btn-outline-custom btn-custom" style="padding:0.5rem 0.9rem;">
+        <a href="<?= adminEsc($adminBase) ?>projetos" class="btn btn-outline-custom btn-custom" style="padding:0.5rem 0.9rem;">
             <i class="bi bi-arrow-left"></i>
         </a>
         <div>
             <h1 class="fw-black mb-0 fs-3">Criar Projeto</h1>
-            <p class="text-muted-custom mb-0 small">Adicionar novo projeto ao portfólio</p>
+            <p class="text-muted-custom mb-0 small">Adicionar novo projeto ao portfÃ³lio</p>
         </div>
     </div>
 
@@ -14,19 +15,18 @@
 
     <form method="POST" enctype="multipart/form-data">
         <div class="row g-4">
-            <!-- Main -->
-            <div class="col-lg-8">
+                        <div class="col-lg-8">
                 <div class="glass p-4 rounded-4 mb-4">
-                    <h5 class="fw-bold mb-4 text-gradient">Informações do Projeto</h5>
+                    <h5 class="fw-bold mb-4 text-gradient">InformaÃ§Ãµes do Projeto</h5>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">Título *</label>
+                        <label class="form-label-custom">TÃ­tulo *</label>
                         <input type="text" name="titulo" class="form-control form-control-admin"
-                               placeholder="Ex: Sistema de Portfólio" value="<?= adminEsc($titulo ?? '') ?>" required>
+                               placeholder="Ex: Sistema de PortfÃ³lio" value="<?= adminEsc($titulo ?? '') ?>" required>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">Descrição</label>
+                        <label class="form-label-custom">DescriÃ§Ã£o</label>
                         <textarea name="descricao" class="form-control form-control-admin" rows="5"
                                   placeholder="Descreva o projeto, suas funcionalidades e objetivos..."><?= adminEsc($descricao ?? '') ?></textarea>
                     </div>
@@ -34,9 +34,9 @@
                     <div class="mb-4">
                         <label class="form-label-custom">Tecnologias utilizadas</label>
                         <input type="text" name="tecnologias" class="form-control form-control-admin"
-                               placeholder="PHP, MySQL, Bootstrap, JavaScript (separadas por vírgula)"
+                               placeholder="PHP, MySQL, Bootstrap, JavaScript (separadas por vÃ­rgula)"
                                value="<?= adminEsc($tecnologias ?? '') ?>">
-                        <small class="text-muted-custom">Separe as tecnologias com vírgula</small>
+                        <small class="text-muted-custom">Separe as tecnologias com vÃ­rgula</small>
                     </div>
 
                     <div class="row g-3">
@@ -64,8 +64,7 @@
                 </div>
             </div>
 
-            <!-- Sidebar -->
-            <div class="col-lg-4">
+                        <div class="col-lg-4">
                 <div class="glass p-4 rounded-4 mb-4">
                     <h5 class="fw-bold mb-4 text-gradient">Imagem do Projeto</h5>
                     <div class="text-center mb-3">
@@ -80,11 +79,11 @@
                         </div>
                     </div>
                     <input type="file" name="imagem" id="imageInput" class="form-control form-control-admin" accept="image/*" data-preview="img-preview">
-                    <small class="text-muted-custom d-block mt-2">JPG, PNG, WEBP · Máx. 5MB</small>
+                    <small class="text-muted-custom d-block mt-2">JPG, PNG, WEBP Â· MÃ¡x. 5MB</small>
                 </div>
 
                 <div class="glass p-4 rounded-4 mb-4">
-                    <h5 class="fw-bold mb-4 text-gradient">Configurações</h5>
+                    <h5 class="fw-bold mb-4 text-gradient">ConfiguraÃ§Ãµes</h5>
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <label class="fw-semibold d-block mb-1">Projeto em Destaque</label>
@@ -100,7 +99,7 @@
                 <button type="submit" class="btn btn-primary-custom btn-custom w-100 btn-lg">
                     <i class="bi bi-plus-circle me-2"></i>Criar Projeto
                 </button>
-                <a href="<?= adminEsc($adminBase) ?>projetos/index.php" class="btn btn-outline-custom btn-custom w-100 mt-2">
+                <a href="<?= adminEsc($adminBase) ?>projetos" class="btn btn-outline-custom btn-custom w-100 mt-2">
                     Cancelar
                 </a>
             </div>
@@ -123,3 +122,5 @@ document.getElementById('imageInput').addEventListener('change', function() {
     }
 });
 </script>
+
+

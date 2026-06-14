@@ -1,21 +1,18 @@
-<?php
-/**
- * admin/controllers/ProjetoController.php
- * CRUD de projetos com prepared statements.
- */
+﻿<?php
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class ProjetoController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    public function listar(): void
+    public function listar()
     {
         exigirAutenticacao();
 
@@ -59,12 +56,12 @@ class ProjetoController
             'sucesso_get'  => $sucesso ? adminMensagemSucesso($sucesso, [
                 'created' => 'Projeto criado com sucesso!',
                 'updated' => 'Projeto atualizado com sucesso!',
-                'deleted' => 'Projeto excluído com sucesso!',
+                'deleted' => 'Projeto excluÃ­do com sucesso!',
             ]) : '',
         ], ['page_title' => 'Projetos | Admin']);
     }
 
-    public function criar(): void
+    public function criar()
     {
         exigirAutenticacao();
 
@@ -85,7 +82,7 @@ class ProjetoController
         ], $dadosForm), ['page_title' => 'Criar Projeto | Admin']);
     }
 
-    public function editar(): void
+    public function editar()
     {
         exigirAutenticacao();
 
@@ -119,7 +116,7 @@ class ProjetoController
         ], ['page_title' => 'Editar Projeto | Admin']);
     }
 
-    public function excluir(): void
+    public function excluir()
     {
         exigirAutenticacao();
 
@@ -235,7 +232,7 @@ class ProjetoController
     private function validarDados(array $dados): string
     {
         if ($dados['titulo'] === '') {
-            return 'O título é obrigatório.';
+            return 'O tÃ­tulo Ã© obrigatÃ³rio.';
         }
 
         return '';
@@ -249,3 +246,5 @@ class ProjetoController
         ];
     }
 }
+
+

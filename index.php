@@ -1,10 +1,5 @@
-<?php
-/**
- * index.php — Página principal do portfólio (pública)
- *
- * Este arquivo apenas orquestra: carrega dados via controllers,
- * define SEO e inclui as sections. Toda lógica está nos controllers.
- */
+﻿<?php
+// Arquivo principal do site
 require_once 'config/conexao.php';
 require_once 'includes/helpers.php';
 require_once 'controllers/PortfolioController.php';
@@ -13,30 +8,29 @@ require_once 'controllers/ContactController.php';
 $portfolio = new PortfolioController($conn);
 $contato   = new ContactController($conn);
 
-// Processa formulário de contato (padrão PRG)
+// Processa formulÃ¡rio de contato (padrÃ£o PRG)
 $contato->processarFormulario();
 $mensagens = $contato->recuperarMensagens();
 
-// Carrega dados da página inicial
+// Carrega dados da pÃ¡gina inicial
 $dados = $portfolio->carregarPaginaInicial();
 extract($dados);
 
-// Tecnologias únicas para filtro de projetos
+// Tecnologias Ãºnicas para filtro de projetos
 $tecnologias_projeto = $portfolio->extrairTecnologiasUnicas($projetos);
 
-// Mensagens do formulário de contato
+// Mensagens do formulÃ¡rio de contato
 $msg_success       = $mensagens['msg_success'];
 $msg_error         = $mensagens['msg_error'];
 $scroll_to_contato = $mensagens['scroll_to_contato'];
 
-// SEO básico: title, description e keywords da página inicial
+// SEO bÃ¡sico: title, description e keywords da pÃ¡gina inicial
 extract($portfolio->seoPaginaInicial($dados));
 
 include 'includes/header.php';
 include 'includes/navbar.php';
 ?>
 
-<!-- SEO: conteúdo principal — cada seção usa H2 como título -->
 <main>
     <?php
     include 'sections/hero.php';
@@ -58,3 +52,5 @@ if ($scroll_to_contato): ?>
     });
 </script>
 <?php endif; ?>
+
+

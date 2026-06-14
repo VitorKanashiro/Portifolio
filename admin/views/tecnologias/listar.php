@@ -1,4 +1,5 @@
-<?php /** View: listar tecnologias */ ?>
+﻿<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
     <div class="d-flex justify-content-between align-items-center mb-5">
         <div>
@@ -12,8 +13,7 @@
 
     <?php include __DIR__ . '/../partials/alertas.php'; ?>
 
-    <!-- Cards Grid -->
-    <?php if (!empty($tecnologias)): ?>
+        <?php if (!empty($tecnologias)): ?>
     <div class="row g-4">
         <?php foreach ($tecnologias as $t): ?>
         <div class="col-sm-6 col-md-4 col-xl-3">
@@ -51,3 +51,5 @@
     </div>
     <?php endif; ?>
 </div>
+
+

@@ -1,9 +1,10 @@
-<?php /** View: editar perfil */ ?>
+﻿<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
     <div class="d-flex align-items-center gap-3 mb-5">
         <div>
             <h1 class="fw-black mb-0 fs-3">Editar Perfil</h1>
-            <p class="text-muted-custom mb-0 small">Informações principais da seção Hero</p>
+            <p class="text-muted-custom mb-0 small">InformaÃ§Ãµes principais da seÃ§Ã£o Hero</p>
         </div>
     </div>
 
@@ -35,11 +36,11 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label-custom">Subtítulo (Apresentação curta)</label>
+                        <label class="form-label-custom">SubtÃ­tulo (ApresentaÃ§Ã£o curta)</label>
                         <textarea name="subtitulo" class="form-control form-control-admin" rows="3"><?= adminEsc($subtitulo ?? $perfil['subtitulo'] ?? '') ?></textarea>
                     </div>
 
-                    <h5 class="fw-bold mt-4 mb-3 text-gradient">Links Rápidos (Hero)</h5>
+                    <h5 class="fw-bold mt-4 mb-3 text-gradient">Links RÃ¡pidos (Hero)</h5>
                     <div class="row g-3">
                         <div class="col-md-6 mb-3">
                             <label class="form-label-custom">Link do GitHub</label>
@@ -55,7 +56,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary-custom btn-custom btn-lg">
-                    <i class="bi bi-check-circle me-2"></i>Salvar Alterações
+                    <i class="bi bi-check-circle me-2"></i>Salvar AlteraÃ§Ãµes
                 </button>
             </div>
 
@@ -80,3 +81,5 @@
         </div>
     </form>
 </div>
+
+

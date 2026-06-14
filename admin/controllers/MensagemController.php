@@ -1,21 +1,18 @@
-<?php
-/**
- * admin/controllers/MensagemController.php
- * Gerenciamento da caixa de entrada (mensagens do formulário público).
- */
+﻿<?php
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class MensagemController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    public function listar(): void
+    public function listar()
     {
         exigirAutenticacao();
 
@@ -50,7 +47,7 @@ class MensagemController
             'total_pages' => (int) ceil($total / $porPagina),
             'totalPages'  => (int) ceil($total / $porPagina),
             'sucesso_get' => $sucesso ? adminMensagemSucesso($sucesso, [
-                'deleted' => 'Mensagem excluída com sucesso!',
+                'deleted' => 'Mensagem excluÃ­da com sucesso!',
                 'readall' => 'Todas as mensagens foram marcadas como lidas!',
             ]) : '',
         ], [
@@ -59,7 +56,7 @@ class MensagemController
         ]);
     }
 
-    public function excluir(): void
+    public function excluir()
     {
         exigirAutenticacao();
 
@@ -71,7 +68,7 @@ class MensagemController
         adminRedirect('index.php', 'deleted');
     }
 
-    private function marcarComoLida(int $id): void
+    private function marcarComoLida(int $id)
     {
         if ($id > 0) {
             dbExecute($this->conn, 'UPDATE mensagens SET lida = 1 WHERE id = ?', 'i', $id);
@@ -89,3 +86,5 @@ class MensagemController
 </style>';
     }
 }
+
+

@@ -1,10 +1,6 @@
-<?php
-/**
- * sections/contato.php — Seção de Contato (informações + formulário)
- * Variáveis: $contato, $redes, $msg_success, $msg_error
- */
+﻿<?php
+// Secao principal do portfolio
 ?>
-<!-- SEO: seção Contato — título de seção em H2 -->
 <section id="contato" class="py-5" style="background: linear-gradient(to bottom, #0a0f1e, #0a0a0f);" aria-labelledby="contato-titulo">
     <div class="container py-5">
         <div class="text-center mb-5 reveal">
@@ -48,7 +44,7 @@
                             <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
                         </div>
                         <div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Localização</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">LocalizaÃ§Ã£o</div>
                             <span class="fw-semibold text-white" style="font-size: 0.95rem;"><?= esc($contato['cidade']) ?></span>
                         </div>
                     </div>
@@ -60,7 +56,7 @@
                         <div class="d-flex gap-2 flex-wrap">
                             <?php foreach ($redes as $rede): ?>
                             <a href="<?= esc($rede['link']) ?>" target="_blank" rel="noopener noreferrer"
-                               class="social-link" title="<?= esc($rede['plataforma']) ?> — <?= esc($nome ?? 'Portfólio') ?>">
+                               class="social-link" title="<?= esc($rede['plataforma']) ?> â€” <?= esc($nome ?? 'PortfÃ³lio') ?>">
                                 <i class="bi <?= esc($rede['icone']) ?>" aria-hidden="true"></i>
                                 <span class="visually-hidden"><?= esc($rede['plataforma']) ?></span>
                             </a>
@@ -97,7 +93,7 @@
                             </div>
                             <div class="col-12">
                                 <label class="form-label-custom" for="contato-assunto">Assunto</label>
-                                <input type="text" id="contato-assunto" name="assunto" class="form-control form-control-custom" placeholder="Sobre o que você quer conversar?">
+                                <input type="text" id="contato-assunto" name="assunto" class="form-control form-control-custom" placeholder="Sobre o que vocÃª quer conversar?">
                             </div>
                             <div class="col-12">
                                 <label class="form-label-custom" for="contato-mensagem">Mensagem *</label>
@@ -116,3 +112,5 @@
         </div>
     </div>
 </section>
+
+

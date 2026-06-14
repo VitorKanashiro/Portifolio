@@ -1,10 +1,6 @@
-<?php
-/**
- * sections/tecnologias.php — Seção de Tecnologias
- * Variáveis: $tecnologias (array)
- */
+﻿<?php
+// Secao principal do portfolio
 ?>
-<!-- SEO: seção Tecnologias — título de seção em H2, itens em H3 -->
 <section id="tecnologias" class="py-5" style="background: linear-gradient(to bottom, #0d0d1a, #0a0a0f);" aria-labelledby="tecnologias-titulo">
     <div class="container py-5">
         <div class="text-center mb-5 reveal">
@@ -21,7 +17,7 @@
                         <i class="bi <?= esc($tech['icone']) ?>" aria-hidden="true"></i>
                     </div>
                     <h3 class="fw-bold mb-1 text-white fs-6"><?= esc($tech['nome']) ?></h3>
-                    <span class="badge-level <?= badgeNivelTecnologia($tech['nivel'] ?? 'intermediário') ?>">
+                    <span class="badge-level <?= badgeNivelTecnologia($tech['nivel'] ?? 'intermediÃ¡rio') ?>">
                         <?= esc($tech['nivel']) ?>
                     </span>
                 </article>
@@ -36,3 +32,5 @@
         <?php endif; ?>
     </div>
 </section>
+
+

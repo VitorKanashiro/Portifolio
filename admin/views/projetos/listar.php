@@ -1,40 +1,38 @@
-<?php /** View: listar projetos */ ?>
+<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-5">
         <div>
             <h1 class="fw-black mb-1 fs-3">Projetos</h1>
             <p class="text-muted-custom mb-0 small"><?= (int) $totalCount ?> projeto<?= $totalCount != 1 ? 's' : '' ?> cadastrado<?= $totalCount != 1 ? 's' : '' ?></p>
         </div>
-        <a href="<?= adminEsc($adminBase) ?>projetos/criar.php" class="btn btn-primary-custom btn-custom">
+        <a href="<?= adminEsc($adminBase) ?>projetos/criar" class="btn btn-primary-custom btn-custom">
             <i class="bi bi-plus-circle"></i> Novo Projeto
         </a>
     </div>
 
-    <!-- Search -->
-    <form method="GET" class="mb-4">
+        <form method="GET" class="mb-4">
         <div class="position-relative" style="max-width:360px;">
             <i class="bi bi-search position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);"></i>
             <input type="text" name="q" class="form-control form-control-admin"
                    style="padding-left:2.75rem !important;"
-                   placeholder="Buscar por título ou tecnologia..."
+                   placeholder="Buscar por tÃ­tulo ou tecnologia..."
                    value="<?= adminEsc($search ?? '') ?>">
         </div>
     </form>
 
     <?php include __DIR__ . '/../partials/alertas.php'; ?>
 
-    <!-- Table -->
-    <div class="glass rounded-4 p-4 overflow-auto">
+        <div class="glass rounded-4 p-4 overflow-auto">
         <table class="table table-dark-custom mb-0">
             <thead>
                 <tr>
                     <th>Imagem</th>
-                    <th>Título</th>
+                    <th>TÃ­tulo</th>
                     <th>Tecnologias</th>
                     <th>Destaque</th>
                     <th>Data</th>
-                    <th class="text-end">Ações</th>
+                    <th class="text-end">AÃ§Ãµes</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,7 +65,7 @@
                                 <i class="bi bi-star-fill me-1"></i>Sim
                             </span>
                             <?php else: ?>
-                            <span class="text-muted-custom small">—</span>
+                            <span class="text-muted-custom small">â€”</span>
                             <?php endif; ?>
                         </td>
                         <td class="text-muted-custom small"><?= date('d/m/Y', strtotime($p['created_at'])) ?></td>
@@ -77,11 +75,11 @@
                                    class="btn btn-sm" style="background:rgba(6,182,212,0.1);color:#22d3ee;border-radius:8px;padding:0.4rem 0.7rem;" title="Ver no site">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="<?= adminEsc($adminBase) ?>projetos/editar.php?id=<?= (int) $p['id'] ?>"
+                                <a href="<?= adminEsc($adminBase) ?>projetos/editar?id=<?= (int) $p['id'] ?>"
                                    class="btn btn-sm" style="background:rgba(124,58,237,0.1);color:#a78bfa;border-radius:8px;padding:0.4rem 0.7rem;" title="Editar">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button onclick="confirmDelete('<?= adminEsc($adminBase) ?>projetos/excluir.php?id=<?= (int) $p['id'] ?>', '<?= adminEsc(addslashes($p['titulo'])) ?>')"
+                                <button onclick="confirmDelete('<?= adminEsc($adminBase) ?>projetos/excluir?id=<?= (int) $p['id'] ?>', '<?= adminEsc(addslashes($p['titulo'])) ?>')"
                                         class="btn btn-sm" style="background:rgba(239,68,68,0.1);color:#f87171;border-radius:8px;padding:0.4rem 0.7rem;" title="Excluir">
                                     <i class="bi bi-trash"></i>
                                 </button>
@@ -95,7 +93,7 @@
                             <div class="empty-state">
                                 <i class="bi bi-folder-x"></i>
                                 <p class="mt-2">Nenhum projeto encontrado.</p>
-                                <a href="<?= adminEsc($adminBase) ?>projetos/criar.php" class="btn btn-primary-custom btn-custom mt-2">
+                                <a href="<?= adminEsc($adminBase) ?>projetos/criar" class="btn btn-primary-custom btn-custom mt-2">
                                     <i class="bi bi-plus-circle"></i> Criar primeiro projeto
                                 </a>
                             </div>
@@ -106,8 +104,7 @@
         </table>
     </div>
 
-    <!-- Pagination -->
-    <?php if (($totalPages ?? 1) > 1): ?>
+        <?php if (($totalPages ?? 1) > 1): ?>
     <nav class="mt-4 d-flex justify-content-center">
         <ul class="pagination" style="gap:0.25rem;">
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
@@ -123,3 +120,5 @@
     </nav>
     <?php endif; ?>
 </div>
+
+

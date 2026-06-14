@@ -1,21 +1,22 @@
-<?php /** View: dashboard principal */ ?>
+<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content" id="main-content">
     <div class="d-flex justify-content-between align-items-center mb-5">
         <div>
             <h1 class="fw-black mb-1 fs-3">Dashboard</h1>
             <p class="text-muted-custom mb-0 small">
                 Bem-vindo, <strong style="color: var(--primary-light);"><?= adminEsc($admin_email) ?></strong>
-                &nbsp;·&nbsp; <?= date('d \d\e F \d\e Y') ?>
+                &nbsp;Â·&nbsp; <?= date('d \d\e F \d\e Y') ?>
             </p>
         </div>
-        <a href="<?= adminEsc($baseUrl) ?>index.php" target="_blank" class="btn btn-outline-custom btn-custom d-none d-md-flex" style="font-size:0.85rem;padding:0.5rem 1rem;">
+        <a href="<?= adminEsc($baseUrl) ?>" target="_blank" class="btn btn-outline-custom btn-custom d-none d-md-flex" style="font-size:0.85rem;padding:0.5rem 1rem;">
             <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Ver Site
         </a>
     </div>
 
     <div class="row g-4 mb-5">
         <div class="col-sm-6 col-xl-3">
-            <a href="<?= adminEsc($adminBase) ?>projetos/index.php" class="text-decoration-none">
+            <a href="<?= adminEsc($adminBase) ?>projetos" class="text-decoration-none">
                 <div class="stat-card h-100" style="border-left: 3px solid #7c3aed;">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <div>
@@ -29,7 +30,7 @@
             </a>
         </div>
         <div class="col-sm-6 col-xl-3">
-            <a href="<?= adminEsc($adminBase) ?>tecnologias/index.php" class="text-decoration-none">
+            <a href="<?= adminEsc($adminBase) ?>tecnologias" class="text-decoration-none">
                 <div class="stat-card h-100" style="border-left: 3px solid #06b6d4;">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <div>
@@ -43,7 +44,7 @@
             </a>
         </div>
         <div class="col-sm-6 col-xl-3">
-            <a href="<?= adminEsc($adminBase) ?>redes/index.php" class="text-decoration-none">
+            <a href="<?= adminEsc($adminBase) ?>redes" class="text-decoration-none">
                 <div class="stat-card h-100" style="border-left: 3px solid #10b981;">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <div>
@@ -57,7 +58,7 @@
             </a>
         </div>
         <div class="col-sm-6 col-xl-3">
-            <a href="<?= adminEsc($adminBase) ?>mensagens/index.php" class="text-decoration-none">
+            <a href="<?= adminEsc($adminBase) ?>mensagens" class="text-decoration-none">
                 <div class="stat-card h-100" style="border-left: 3px solid #f59e0b;">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <div>
@@ -67,7 +68,7 @@
                         <div class="stat-icon" style="background:rgba(245,158,11,0.15);color:#fbbf24;"><i class="bi bi-envelope-fill" aria-hidden="true"></i></div>
                     </div>
                     <p class="text-muted-custom mb-0 small">
-                        <?= $total_mensagens > 0 ? '<span style="color:#fbbf24;">Não lidas</span>' : 'Nenhuma nova mensagem' ?>
+                        <?= $total_mensagens > 0 ? '<span style="color:#fbbf24;">NÃ£o lidas</span>' : 'Nenhuma nova mensagem' ?>
                     </p>
                 </div>
             </a>
@@ -75,11 +76,11 @@
     </div>
 
     <div class="row g-3 mb-5">
-        <div class="col-12"><h2 class="fw-bold mb-3 text-muted-custom small text-uppercase" style="letter-spacing:1px;">Ações Rápidas</h2></div>
-        <div class="col-6 col-md-3"><a href="<?= adminEsc($adminBase) ?>projetos/criar.php" class="btn btn-primary-custom btn-custom w-100"><i class="bi bi-plus-circle" aria-hidden="true"></i><br><small>Novo Projeto</small></a></div>
-        <div class="col-6 col-md-3"><a href="<?= adminEsc($adminBase) ?>tecnologias/criar.php" class="btn btn-outline-custom btn-custom w-100"><i class="bi bi-cpu" aria-hidden="true"></i><br><small>Nova Tecnologia</small></a></div>
-        <div class="col-6 col-md-3"><a href="<?= adminEsc($adminBase) ?>perfil/editar.php" class="btn btn-outline-custom btn-custom w-100"><i class="bi bi-person-badge" aria-hidden="true"></i><br><small>Editar Perfil</small></a></div>
-        <div class="col-6 col-md-3"><a href="<?= adminEsc($adminBase) ?>redes/criar.php" class="btn btn-outline-custom btn-custom w-100"><i class="bi bi-share" aria-hidden="true"></i><br><small>Nova Rede Social</small></a></div>
+        <div class="col-12"><h2 class="fw-bold mb-3 text-muted-custom small text-uppercase" style="letter-spacing:1px;">AÃ§Ãµes RÃ¡pidas</h2></div>
+        <div class="col-6 col-md-3"><a href="<?= adminEsc($adminBase) ?>projetos/criar" class="btn btn-primary-custom btn-custom w-100"><i class="bi bi-plus-circle" aria-hidden="true"></i><br><small>Novo Projeto</small></a></div>
+        <div class="col-6 col-md-3"><a href="<?= adminEsc($adminBase) ?>tecnologias/criar" class="btn btn-outline-custom btn-custom w-100"><i class="bi bi-cpu" aria-hidden="true"></i><br><small>Nova Tecnologia</small></a></div>
+        <div class="col-6 col-md-3"><a href="<?= adminEsc($adminBase) ?>perfil" class="btn btn-outline-custom btn-custom w-100"><i class="bi bi-person-badge" aria-hidden="true"></i><br><small>Editar Perfil</small></a></div>
+        <div class="col-6 col-md-3"><a href="<?= adminEsc($adminBase) ?>redes/criar" class="btn btn-outline-custom btn-custom w-100"><i class="bi bi-share" aria-hidden="true"></i><br><small>Nova Rede Social</small></a></div>
     </div>
 
     <div class="row g-4">
@@ -87,11 +88,11 @@
             <div class="glass rounded-4 p-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2 class="fw-bold mb-0 fs-5">Projetos Recentes</h2>
-                    <a href="<?= adminEsc($adminBase) ?>projetos/index.php" class="btn btn-outline-custom btn-custom" style="font-size:0.8rem;padding:0.4rem 0.9rem;">Ver Todos <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a>
+                    <a href="<?= adminEsc($adminBase) ?>projetos" class="btn btn-outline-custom btn-custom" style="font-size:0.8rem;padding:0.4rem 0.9rem;">Ver Todos <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-dark-custom mb-0">
-                        <thead><tr><th>#</th><th>Título</th><th>Tecnologias</th><th>Data</th><th></th></tr></thead>
+                        <thead><tr><th>#</th><th>TÃ­tulo</th><th>Tecnologias</th><th>Data</th><th></th></tr></thead>
                         <tbody>
                             <?php if (!empty($projetos_recentes)): ?>
                                 <?php foreach ($projetos_recentes as $p): ?>
@@ -100,7 +101,7 @@
                                     <td class="fw-semibold"><?= adminEsc($p['titulo']) ?></td>
                                     <td><span class="badge" style="background:rgba(124,58,237,0.15);color:#a78bfa;border-radius:8px;font-size:0.72rem;"><?= adminEsc(substr($p['tecnologias'] ?? '', 0, 25)) ?></span></td>
                                     <td class="text-muted-custom small"><?= date('d/m/Y', strtotime($p['created_at'])) ?></td>
-                                    <td><a href="<?= adminEsc($adminBase) ?>projetos/editar.php?id=<?= (int) $p['id'] ?>" class="btn btn-sm" style="background:rgba(124,58,237,0.15);color:#a78bfa;border-radius:8px;"><i class="bi bi-pencil" aria-hidden="true"></i></a></td>
+                                    <td><a href="<?= adminEsc($adminBase) ?>projetos/editar?id=<?= (int) $p['id'] ?>" class="btn btn-sm" style="background:rgba(124,58,237,0.15);color:#a78bfa;border-radius:8px;"><i class="bi bi-pencil" aria-hidden="true"></i></a></td>
                                 </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -138,3 +139,5 @@
         </div>
     </div>
 </div>
+
+

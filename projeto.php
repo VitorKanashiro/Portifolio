@@ -1,14 +1,11 @@
 <?php
-/**
- * projeto.php — Página de detalhes de um projeto
- * Suporta URLs amigáveis via slug (?slug=) ou ID legado (?id=).
- */
+// Pagina de detalhes do projeto
 require_once 'config/conexao.php';
 require_once 'includes/helpers.php';
 require_once 'controllers/PortfolioController.php';
 
 $portfolio   = new PortfolioController($conn);
-$homeUrl     = siteUrl('index.php');
+$homeUrl     = siteUrl('');
 $projetosUrl = $homeUrl . '#projetos';
 
 $slug = trim($_GET['slug'] ?? '');
@@ -51,7 +48,6 @@ include 'includes/header.php';
 include 'includes/navbar.php';
 ?>
 
-<!-- Hero Banner -->
 <div style="min-height: 55vh; background: linear-gradient(135deg, #0a0a0f 0%, #0f0a1e 60%, #0a1628 100%); display: flex; align-items: flex-end; padding-top: 80px; position: relative; overflow: hidden;">
     <div style="position: absolute; top: -20%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
 
@@ -84,12 +80,10 @@ include 'includes/navbar.php';
     </div>
 </div>
 
-<!-- Content Section -->
 <section style="background: var(--bg-dark); padding: 4rem 0 6rem;">
     <div class="container">
         <div class="row g-5">
-            <!-- Main Content -->
-            <div class="col-lg-8">
+                        <div class="col-lg-8">
                 <?php if ($temImagem): ?>
                 <div class="mb-5 animate-fadeInUp delay-2">
                     <img src="<?= esc(uploadUrl($projeto['imagem'])) ?>"
@@ -106,8 +100,7 @@ include 'includes/navbar.php';
                 </div>
             </div>
 
-            <!-- Sidebar -->
-            <div class="col-lg-4">
+                        <div class="col-lg-4">
                 <div class="glass p-4 rounded-4 sticky-top animate-fadeInUp delay-3" style="top: 100px; z-index: 10;">
                     <h5 class="fw-bold mb-4 text-gradient">Detalhes</h5>
 
@@ -152,3 +145,5 @@ include 'includes/navbar.php';
 </section>
 
 <?php include 'includes/footer.php'; ?>
+
+

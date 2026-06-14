@@ -1,16 +1,12 @@
-<?php
-/**
- * sections/projetos.php — Seção de Projetos
- * Variáveis: $projetos, $tecnologias_projeto, $portfolio (PortfolioController)
- */
+﻿<?php
+// Secao principal do portfolio
 $tecnologiasFiltro = $tecnologias_projeto ?? [];
 ?>
-<!-- SEO: seção Projetos — título de seção em H2, cards em article com H3 -->
 <section id="projetos" class="py-5" style="background: linear-gradient(to bottom, #0a0a0f, #0a0f1e);" aria-labelledby="projetos-titulo">
     <div class="container py-5">
         <div class="text-center mb-5 reveal">
             <h2 id="projetos-titulo" class="section-title mx-auto">Projetos</h2>
-            <p class="text-muted-custom mt-4">Algumas das soluções que desenvolvi</p>
+            <p class="text-muted-custom mt-4">Algumas das soluÃ§Ãµes que desenvolvi</p>
         </div>
 
         <div class="d-flex flex-wrap gap-3 justify-content-center align-items-center mb-5 reveal">
@@ -83,7 +79,7 @@ $tecnologiasFiltro = $tecnologias_projeto ?? [];
                             <?php if (!empty($projeto['github'])): ?>
                             <a href="<?= esc($projeto['github']) ?>" target="_blank" rel="noopener noreferrer"
                                class="btn btn-outline-custom btn-custom flex-fill" style="padding: 0.6rem 1rem; font-size: 0.85rem;">
-                                <i class="bi bi-github" aria-hidden="true"></i> Repositório
+                                <i class="bi bi-github" aria-hidden="true"></i> RepositÃ³rio
                             </a>
                             <?php endif; ?>
                         </div>
@@ -101,3 +97,5 @@ $tecnologiasFiltro = $tecnologias_projeto ?? [];
         <?php endif; ?>
     </div>
 </section>
+
+

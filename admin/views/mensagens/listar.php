@@ -1,4 +1,5 @@
-<?php /** View: listar mensagens */ ?>
+﻿<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
     <div class="d-flex justify-content-between align-items-center mb-5">
         <div>
@@ -39,7 +40,7 @@
                     </div>
                 </div>
                 <div class="text-end">
-                    <small class="text-muted-custom d-block mb-2"><?= date('d/m/Y \à\s H:i', strtotime($msg['created_at'])) ?></small>
+                    <small class="text-muted-custom d-block mb-2"><?= date('d/m/Y \Ã \s H:i', strtotime($msg['created_at'])) ?></small>
                     <div class="d-flex gap-2 justify-content-end">
                         <?php if (!$msg['lida']): ?>
                         <a href="?action=ler&id=<?= (int) $msg['id'] ?>" class="btn btn-sm btn-primary-custom" title="Marcar como lida" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;">
@@ -67,8 +68,7 @@
         <?php endforeach; ?>
     </div>
 
-    <!-- Pagination -->
-    <?php if (($totalPages ?? 1) > 1): ?>
+        <?php if (($totalPages ?? 1) > 1): ?>
     <nav class="mt-5">
         <ul class="pagination justify-content-center">
             <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
@@ -80,7 +80,7 @@
             </li>
             <?php endfor; ?>
             <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
-                <a class="page-link glass border-0" href="?p=<?= $page + 1 ?>">Próxima</a>
+                <a class="page-link glass border-0" href="?p=<?= $page + 1 ?>">PrÃ³xima</a>
             </li>
         </ul>
     </nav>
@@ -90,7 +90,7 @@
     <div class="empty-state glass rounded-4 p-5 text-center">
         <i class="bi bi-inbox" style="font-size: 3rem; color: rgba(124,58,237,0.4);"></i>
         <p class="mt-3 mb-0 fs-5">Caixa de entrada vazia.</p>
-        <small class="text-muted-custom">Você ainda não recebeu nenhuma mensagem.</small>
+        <small class="text-muted-custom">VocÃª ainda nÃ£o recebeu nenhuma mensagem.</small>
     </div>
     <?php endif; ?>
 </div>
@@ -102,3 +102,5 @@
 .pagination .active .page-link { background: var(--primary) !important; color: white !important; }
 .pagination .disabled .page-link { opacity: 0.5; background: rgba(255,255,255,0.05) !important; }
 </style>
+
+

@@ -1,21 +1,18 @@
-<?php
-/**
- * admin/controllers/DashboardController.php
- * Dados e renderização do painel principal.
- */
+﻿<?php
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class DashboardController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    public function index(): void
+    public function index()
     {
         exigirAutenticacao();
 
@@ -27,6 +24,8 @@ class DashboardController
             'projetos_recentes'  => dbFetchAll($this->conn, 'SELECT * FROM projetos ORDER BY created_at DESC LIMIT 6'),
             'mensagens_recentes' => dbFetchAll($this->conn, 'SELECT * FROM mensagens ORDER BY created_at DESC LIMIT 5'),
             'admin_email'        => adminEmailLogado(),
-        ], ['page_title' => 'Dashboard | Admin Portfólio']);
+        ], ['page_title' => 'Dashboard | Admin PortfÃ³lio']);
     }
 }
+
+

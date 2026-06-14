@@ -1,31 +1,40 @@
 <?php
-/**
- * admin/helpers/admin_helpers.php
- * Funções auxiliares reutilizáveis do painel administrativo.
- */
+// Arquivo do painel administrativo
+
+// Polyfills para compatibilidade com versÃµes anteriores ao PHP 8.0
+if (!function_exists('str_contains')) {
+    function str_contains(string $haystack, string $needle): bool
+    {
+        return $needle !== '' && strpos($haystack, $needle) !== false;
+    }
+}
+
+if (!function_exists('str_starts_with')) {
+    function str_starts_with(string $haystack, string $needle): bool
+    {
+        return strncmp($haystack, $needle, strlen($needle)) === 0;
+    }
+}
+
+if (!function_exists('str_ends_with')) {
+    function str_ends_with(string $haystack, string $needle): bool
+    {
+        return $needle === '' || (substr($haystack, -strlen($needle)) === $needle);
+    }
+}
 
 require_once dirname(__DIR__) . '/config/admin_config.php';
 
-/**
- * Escapa saída HTML de forma segura (previne XSS).
- */
 function adminEsc(string $texto): string
 {
     return htmlspecialchars($texto, ENT_QUOTES, 'UTF-8');
 }
 
-/**
- * Sanitiza texto de entrada: remove tags HTML e espaços extras.
- * Usar ANTES de gravar no banco (prepared statements protegem SQL).
- */
 function adminSanitizar(string $texto): string
 {
     return trim(strip_tags($texto));
 }
 
-/**
- * Sanitiza e valida URL. Retorna string vazia se inválida.
- */
 function adminSanitizarUrl(string $url): string
 {
     $url = trim($url);
@@ -36,10 +45,6 @@ function adminSanitizarUrl(string $url): string
     return filter_var($url, FILTER_VALIDATE_URL) ? $url : '';
 }
 
-/**
- * Retorna o caminho web absoluto até a raiz do projeto (ex: /portifolio-1/).
- * Evita quebra de CSS/JS em páginas admin em subpastas.
- */
 function adminSiteRoot(): string
 {
     static $root = null;
@@ -68,37 +73,25 @@ function adminSiteRoot(): string
     return $root;
 }
 
-/**
- * Retorna o caminho web absoluto da pasta admin (ex: /portifolio-1/admin/).
- */
 function adminWebPath(): string
 {
     return adminSiteRoot() . 'admin/';
 }
 
 
-/**
- * Calcula prefixo relativo para links internos do admin (sidebar).
- */
 function adminUrlBase(): string
 {
     return adminWebPath();
 }
 
-/**
- * URL do login admin relativa ao script atual.
- */
 function adminLoginUrl(): string
 {
-    return adminWebPath() . 'auth/login.php';
+    return adminWebPath() . 'auth/login';
 }
 
-/**
- * Renderiza uma view do admin com header, sidebar e footer.
- */
-function renderAdminView(string $view, array $dados = [], array $opcoes = []): void
+function renderAdminView(string $view, array $dados = [], array $opcoes = [])
 {
-    $pageTitle = $opcoes['page_title'] ?? 'Admin Portfólio';
+    $pageTitle = $opcoes['page_title'] ?? 'Admin PortfÃ³lio';
     $showSidebar = $opcoes['show_sidebar'] ?? true;
     $extraScripts = $opcoes['extra_scripts'] ?? '';
     $extraStyles = $opcoes['extra_styles'] ?? '';
@@ -119,7 +112,7 @@ function renderAdminView(string $view, array $dados = [], array $opcoes = []): v
 
     if (!file_exists($viewPath)) {
         http_response_code(500);
-        echo '<div class="admin-content p-5"><p class="text-danger">View não encontrada: ' . adminEsc($view) . '</p></div>';
+        echo '<div class="admin-content p-5"><p class="text-danger">View nÃ£o encontrada: ' . adminEsc($view) . '</p></div>';
     } else {
         include $viewPath;
     }
@@ -127,10 +120,7 @@ function renderAdminView(string $view, array $dados = [], array $opcoes = []): v
     include dirname(__DIR__) . '/includes/admin_footer.php';
 }
 
-/**
- * Redireciona com mensagem de sucesso via query string.
- */
-function adminRedirect(string $url, ?string $success = null): void
+function adminRedirect(string $url, $success = null)
 {
     if ($success !== null) {
         $separador = str_contains($url, '?') ? '&' : '?';
@@ -141,38 +131,26 @@ function adminRedirect(string $url, ?string $success = null): void
     exit;
 }
 
-/**
- * Retorna mensagem de sucesso baseada no parâmetro GET ?success=
- */
-function adminMensagemSucesso(?string $chave, array $mapa): string
+function adminMensagemSucesso($chave, array $mapa): string
 {
-    return $mapa[$chave ?? ''] ?? 'Operação realizada com sucesso!';
+    return $mapa[$chave ?? ''] ?? 'OperaÃ§Ã£o realizada com sucesso!';
 }
 
-/**
- * Verifica se arquivo de upload existe no diretório de uploads.
- */
-function adminUploadExiste(?string $arquivo): bool
+function adminUploadExiste($arquivo): bool
 {
     return $arquivo !== null && $arquivo !== '' && file_exists(ADMIN_UPLOAD_DIR . $arquivo);
 }
 
-/**
- * Retorna caminho relativo da URL de upload para exibição no admin.
- */
 function adminUploadSrc(string $arquivo): string
 {
     return adminSiteRoot() . ADMIN_UPLOAD_URL . $arquivo;
 }
 
-// ─────────────────────────────────────────────────────────────
-// BANCO DE DADOS — Prepared Statements
-// ─────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// BANCO DE DADOS â€” Prepared Statements
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-/**
- * Executa query preparada e retorna uma linha associativa ou null.
- */
-function dbFetchOne(mysqli $conn, string $sql, string $types = '', mixed ...$params): ?array
+function dbFetchOne(mysqli $conn, string $sql, string $types = '', ...$params)
 {
     $stmt = mysqli_prepare($conn, $sql);
     if (!$stmt) {
@@ -191,10 +169,7 @@ function dbFetchOne(mysqli $conn, string $sql, string $types = '', mixed ...$par
     return $linha ?: null;
 }
 
-/**
- * Executa query preparada e retorna todas as linhas.
- */
-function dbFetchAll(mysqli $conn, string $sql, string $types = '', mixed ...$params): array
+function dbFetchAll(mysqli $conn, string $sql, string $types = '', ...$params): array
 {
     $stmt = mysqli_prepare($conn, $sql);
     if (!$stmt) {
@@ -213,10 +188,7 @@ function dbFetchAll(mysqli $conn, string $sql, string $types = '', mixed ...$par
     return $linhas;
 }
 
-/**
- * Executa INSERT/UPDATE/DELETE preparado. Retorna true em sucesso.
- */
-function dbExecute(mysqli $conn, string $sql, string $types = '', mixed ...$params): bool
+function dbExecute(mysqli $conn, string $sql, string $types = '', ...$params): bool
 {
     $stmt = mysqli_prepare($conn, $sql);
     if (!$stmt) {
@@ -234,24 +206,17 @@ function dbExecute(mysqli $conn, string $sql, string $types = '', mixed ...$para
 }
 
 
-/**
- * Retorna valor escalar de uma query COUNT etc.
- */
-function dbFetchScalar(mysqli $conn, string $sql, string $types = '', mixed ...$params): int
+function dbFetchScalar(mysqli $conn, string $sql, string $types = '', ...$params): int
 {
     $linha = dbFetchOne($conn, $sql, $types, ...$params);
 
     return (int) ($linha ? array_values($linha)[0] : 0);
 }
 
-// ─────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // UPLOAD DE IMAGENS
-// ─────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-/**
- * Processa upload de imagem com validação de tipo e tamanho.
- * Retorna ['arquivo' => string, 'erro' => string].
- */
 function adminProcessarUpload(array $arquivo, string $prefixo = 'img_'): array
 {
     if (empty($arquivo['name']) || ($arquivo['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
@@ -265,11 +230,11 @@ function adminProcessarUpload(array $arquivo, string $prefixo = 'img_'): array
     $extensao = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
 
     if (!in_array($extensao, ADMIN_UPLOAD_EXTENSIONS, true)) {
-        return ['arquivo' => '', 'erro' => 'Formato inválido. Use: JPG, PNG, GIF ou WEBP.'];
+        return ['arquivo' => '', 'erro' => 'Formato invÃ¡lido. Use: JPG, PNG, GIF ou WEBP.'];
     }
 
     if (($arquivo['size'] ?? 0) > ADMIN_UPLOAD_MAX_SIZE) {
-        return ['arquivo' => '', 'erro' => 'Arquivo muito grande. Máximo 5MB.'];
+        return ['arquivo' => '', 'erro' => 'Arquivo muito grande. MÃ¡ximo 5MB.'];
     }
 
     if (!is_dir(ADMIN_UPLOAD_DIR)) {
@@ -286,37 +251,34 @@ function adminProcessarUpload(array $arquivo, string $prefixo = 'img_'): array
     return ['arquivo' => $nomeArquivo, 'erro' => ''];
 }
 
-/**
- * Remove arquivo de upload do disco se existir.
- */
-function adminRemoverUpload(?string $arquivo): void
+function adminRemoverUpload($arquivo)
 {
     if ($arquivo && file_exists(ADMIN_UPLOAD_DIR . $arquivo)) {
         @unlink(ADMIN_UPLOAD_DIR . $arquivo);
     }
 }
 
-/**
- * Mapeia nível textual para percentual (usado na ordenação do site).
- */
 function adminNivelPercentual(string $nivel): int
 {
     $nivelLower = strtolower($nivel);
 
-    return match (true) {
-        str_contains($nivelLower, 'expert')  => 95,
-        str_contains($nivelLower, 'avan')    => 85,
-        str_contains($nivelLower, 'inter')   => 70,
-        str_contains($nivelLower, 'bás') || str_contains($nivelLower, 'bas') => 50,
-        default                              => 60,
-    };
+    if (str_contains($nivelLower, 'expert')) {
+        return 95;
+    } elseif (str_contains($nivelLower, 'avan')) {
+        return 85;
+    } elseif (str_contains($nivelLower, 'inter')) {
+        return 70;
+    } elseif (str_contains($nivelLower, 'bÃ¡s') || str_contains($nivelLower, 'bas')) {
+        return 50;
+    } else {
+        return 60;
+    }
 }
 
-/**
- * Retorna classe CSS do badge de nível da tecnologia.
- */
 function adminBadgeNivel(string $nivel): string
 {
     return badgeNivelTecnologia($nivel);
 }
+
+
 

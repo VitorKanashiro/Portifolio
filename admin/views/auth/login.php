@@ -1,4 +1,5 @@
-<?php /** View: login do admin — apenas interface HTML */ ?>
+<?php
+// Autenticacao do administrador  ?>
 <div class="login-page">
     <div style="position:absolute;top:-20%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,0.1) 0%,transparent 70%);border-radius:50%;pointer-events:none;" aria-hidden="true"></div>
 
@@ -16,7 +17,7 @@
 
         <?php if (!empty($timeout)): ?>
         <div class="alert-custom alert-danger-custom mb-4 p-3 rounded-3" role="alert">
-            <i class="bi bi-clock-history me-2" aria-hidden="true"></i>Sua sessão expirou por inatividade. Faça login novamente.
+            <i class="bi bi-clock-history me-2" aria-hidden="true"></i>Sua sessÃ£o expirou por inatividade. FaÃ§a login novamente.
         </div>
         <?php endif; ?>
 
@@ -38,7 +39,7 @@
                     <i class="bi bi-lock position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);" aria-hidden="true"></i>
                     <input type="password" name="senha" id="senhaInput" class="form-control form-control-admin"
                            style="padding-left:2.75rem !important; padding-right:3rem !important;"
-                           placeholder="••••••••" required>
+                           placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required>
                     <button type="button" onclick="toggleSenha()"
                             style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;padding:0;"
                             aria-label="Mostrar ou ocultar senha">
@@ -59,7 +60,7 @@
             </button>
 
             <div class="text-center">
-                <a href="<?= adminEsc($baseUrl) ?>index.php" class="text-muted-custom small text-decoration-none">
+                <a href="<?= adminEsc($baseUrl) ?>" class="text-muted-custom small text-decoration-none">
                     <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Voltar ao site
                 </a>
             </div>
@@ -86,3 +87,5 @@ document.getElementById('login-form').addEventListener('submit', function() {
     btn.disabled = true;
 });
 </script>
+
+

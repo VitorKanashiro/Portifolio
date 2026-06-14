@@ -1,15 +1,85 @@
-# .htaccess — URLs amigáveis e otimizações de performance
-
-# Impede a listagem de diretórios globalmente
-Options -Indexes
-
+# .htaccess Centralizado (Único do Sistema)
+# Bloqueia a listagem de arquivos e desabilita MultiViews (evita conflito entre pasta virtual /projeto e projeto.php)
+Options -Indexes -MultiViews
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /portifolio-1/
 
-    # URL amigável do projeto: /projeto/nome-do-projeto-1 → projeto.php?slug=nome-do-projeto-1
-    RewriteRule ^projeto/([a-z0-9-]+)/?$ projeto.php?slug=$1 [L,QSA]
+    # IMPORTANTE: Determina dinamicamente a base da URL (agnóstico ao subdiretório).
+    RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
+    RewriteRule ^(.*)$ - [E=BASE:%1]
+
+    # ─────────────────────────────────────────────────────────────────────────────
+    # SEGURANÇA: Bloqueia acesso a pastas internas (Retorna 403)
+    # ─────────────────────────────────────────────────────────────────────────────
+    RewriteRule ^(admin/config|admin/controllers|admin/helpers|admin/includes|admin/views|config|controllers|includes|sections)(/|$) - [F,L,NC]
+
+    # Impede execução de scripts na pasta de uploads
+    RewriteRule ^assets/uploads/.*\.(php|php3|php4|php5|php7|php8|phtml|pl|py|jsp|asp|sh|cgi)$ - [F,L,NC]
+
+    # ─────────────────────────────────────────────────────────────────────────────
+    # REDIRECT 301: Remove .php de qualquer URL pública
+    # Usa THE_REQUEST para evitar loop (só redireciona requisições reais do browser)
+    # ─────────────────────────────────────────────────────────────────────────────
+
+    # Home: /index.php → /
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.php[?\ ] [NC]
+    RewriteRule ^index\.php$ %{ENV:BASE} [R=301,L]
+
+    # Admin: qualquer arquivo.php → sem .php (exclui arquivos de inclusão interna)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*/admin/(.+)\.php[?\ ] [NC]
+    RewriteRule ^admin/(.+)\.php$ %{ENV:BASE}admin/$1 [R=301,L,NE]
+
+    # Projeto público: /projeto.php?slug=x → /projeto/x (redirect 301)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*/projeto\.php\?slug=([^\ &]+) [NC]
+    RewriteRule ^projeto\.php$ %{ENV:BASE}projeto/%1 [R=301,L,NE]
+
+    # ─────────────────────────────────────────────────────────────────────────────
+    # REESCRITA INTERNA: Admin — mapeia URL amigável para o arquivo .php real
+    # ─────────────────────────────────────────────────────────────────────────────
+
+    # Login / Logout
+    RewriteRule ^admin/auth/login/?$   admin/auth/login.php   [L,QSA]
+    RewriteRule ^admin/auth/logout/?$  admin/auth/logout.php  [L,QSA]
+
+    # Dashboard
+    RewriteRule ^admin/dashboard/?$    admin/dashboard.php    [L,QSA]
+
+    # Projetos
+    RewriteRule ^admin/projetos/?$                    admin/projetos/index.php       [L,QSA]
+    RewriteRule ^admin/projetos/criar/?$              admin/projetos/criar.php       [L,QSA]
+    RewriteRule ^admin/projetos/editar/?$             admin/projetos/editar.php      [L,QSA]
+    RewriteRule ^admin/projetos/excluir/?$            admin/projetos/excluir.php     [L,QSA]
+
+    # Tecnologias
+    RewriteRule ^admin/tecnologias/?$                 admin/tecnologias/index.php    [L,QSA]
+    RewriteRule ^admin/tecnologias/criar/?$           admin/tecnologias/criar.php    [L,QSA]
+    RewriteRule ^admin/tecnologias/editar/?$          admin/tecnologias/editar.php   [L,QSA]
+    RewriteRule ^admin/tecnologias/excluir/?$         admin/tecnologias/excluir.php  [L,QSA]
+
+    # Redes Sociais
+    RewriteRule ^admin/redes/?$                       admin/redes/index.php          [L,QSA]
+    RewriteRule ^admin/redes/criar/?$                 admin/redes/criar.php          [L,QSA]
+    RewriteRule ^admin/redes/editar/?$                admin/redes/editar.php         [L,QSA]
+    RewriteRule ^admin/redes/excluir/?$               admin/redes/excluir.php        [L,QSA]
+
+    # Mensagens
+    RewriteRule ^admin/mensagens/?$                   admin/mensagens/index.php      [L,QSA]
+    RewriteRule ^admin/mensagens/excluir/?$           admin/mensagens/excluir.php    [L,QSA]
+
+    # Perfil, Sobre, Contato
+    RewriteRule ^admin/perfil/?$                      admin/perfil/editar.php        [L,QSA]
+    RewriteRule ^admin/sobre/?$                       admin/sobre/editar.php         [L,QSA]
+    RewriteRule ^admin/contato/?$                     admin/contato/editar.php       [L,QSA]
+
+    # Admin index (entrada principal do painel)
+    RewriteRule ^admin/?$                             admin/index.php                [L,QSA]
+
+    # ─────────────────────────────────────────────────────────────────────────────
+    # REESCRITA INTERNA: Projeto público — URL amigável
+    # ─────────────────────────────────────────────────────────────────────────────
+    RewriteRule ^projeto/([a-zA-Z0-9_-]+)/?$ %{ENV:BASE}projeto.php?slug=$1 [L,QSA,NC]
+
 </IfModule>
 
 # Compressão GZIP para melhor performance

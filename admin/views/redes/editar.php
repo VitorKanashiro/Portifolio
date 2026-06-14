@@ -1,7 +1,8 @@
-<?php /** View: editar rede social */ ?>
+<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
     <div class="d-flex align-items-center gap-3 mb-5">
-        <a href="<?= adminEsc($adminBase) ?>redes/index.php" class="btn btn-outline-custom btn-custom" style="padding:0.5rem 0.9rem;"><i class="bi bi-arrow-left"></i></a>
+        <a href="<?= adminEsc($adminBase) ?>redes" class="btn btn-outline-custom btn-custom" style="padding:0.5rem 0.9rem;"><i class="bi bi-arrow-left"></i></a>
         <div>
             <h1 class="fw-black mb-0 fs-3">Editar Rede Social</h1>
             <p class="text-muted-custom mb-0 small"><?= adminEsc($rede['plataforma']) ?></p>
@@ -23,7 +24,7 @@
                                    value="<?= adminEsc($plataforma ?? $rede['plataforma']) ?>" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label-custom">Ordem de exibição</label>
+                            <label class="form-label-custom">Ordem de exibiÃ§Ã£o</label>
                             <input type="number" name="ordem" class="form-control form-control-admin"
                                    value="<?= (int) ($ordem ?? $rede['ordem']) ?>">
                         </div>
@@ -36,7 +37,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">Ícone (Bootstrap Icons) *</label>
+                        <label class="form-label-custom">Ãcone (Bootstrap Icons) *</label>
                         <div class="position-relative">
                             <i id="icon-preview" class="bi <?= adminEsc($icone ?? $rede['icone']) ?> position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:1.1rem;"></i>
                             <input type="text" name="icone" id="iconeInput" class="form-control form-control-admin"
@@ -63,9 +64,9 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary-custom btn-custom btn-lg">
-                    <i class="bi bi-check-circle me-2"></i>Salvar Alterações
+                    <i class="bi bi-check-circle me-2"></i>Salvar AlteraÃ§Ãµes
                 </button>
-                <button type="button" onclick="confirmDelete('<?= adminEsc($adminBase) ?>redes/excluir.php?id=<?= (int) $id ?>', '<?= adminEsc(addslashes($rede['plataforma'])) ?>')"
+                <button type="button" onclick="confirmDelete('<?= adminEsc($adminBase) ?>redes/excluir?id=<?= (int) $id ?>', '<?= adminEsc(addslashes($rede['plataforma'])) ?>')"
                         class="btn btn-custom btn-lg ms-2" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171;">
                     <i class="bi bi-trash me-2"></i>Excluir
                 </button>
@@ -98,3 +99,5 @@ document.querySelector('[name="plataforma"]').addEventListener('input', function
     document.getElementById('preview-name').textContent = this.value || 'Plataforma';
 });
 </script>
+
+

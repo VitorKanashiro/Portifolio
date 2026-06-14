@@ -1,13 +1,9 @@
-<?php
-/**
- * sections/sobre.php — Seção Sobre Mim
- * Variáveis: $sobre, $projetos, $tecnologias
- */
+﻿<?php
+// Secao principal do portfolio
 $tituloSobre    = $sobre['titulo'] ?? 'Sobre Mim';
 $experiencia    = $sobre['experiencia'] ?? '3+';
 $projetosCount  = $sobre['projetos_count'] ?? '20+';
 ?>
-<!-- SEO: seção Sobre — título de seção em H2 -->
 <section id="sobre" class="py-5" style="background: linear-gradient(to bottom, #0a0a0f, #0d0d1a);" aria-labelledby="sobre-titulo">
     <div class="container py-5">
         <div class="row align-items-center g-5">
@@ -55,7 +51,7 @@ $projetosCount  = $sobre['projetos_count'] ?? '20+';
                     <div class="text-center">
                         <div class="fw-black" style="font-size: 2rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
                              data-count="<?= extrairNumeroExperiencia($experiencia) ?>" data-suffix="+">0</div>
-                        <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Anos de Experiência</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Anos de ExperiÃªncia</div>
                     </div>
                     <div style="width: 1px; background: var(--border-glass);" aria-hidden="true"></div>
                     <div class="text-center">
@@ -74,3 +70,5 @@ $projetosCount  = $sobre['projetos_count'] ?? '20+';
         </div>
     </div>
 </section>
+
+

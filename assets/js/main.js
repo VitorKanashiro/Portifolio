@@ -1,12 +1,7 @@
-/**
- * Portfolio - Main JavaScript
- * Animations, interactions, dark mode, filters, toasts
- */
+﻿// Logica de interface e interatividade global
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    // ===== Navbar Scroll Effect =====
-    const navbar = document.querySelector('.navbar');
+const navbar = document.querySelector('.navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -18,9 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    // ===== Active Nav Link on Scroll =====
-    const sections = document.querySelectorAll('section[id]');
+const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
 
     const observerOptions = {
@@ -43,9 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, observerOptions);
 
     sections.forEach(section => sectionObserver.observe(section));
-
-    // ===== Scroll Reveal Animations =====
-    const revealObserver = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
@@ -63,9 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         revealObserver.observe(el);
     });
-
-    // ===== Skill Bars Animation =====
-    const skillObserver = new IntersectionObserver((entries) => {
+const skillObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const bar = entry.target;
@@ -77,9 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.3 });
 
     document.querySelectorAll('.skill-bar-fill').forEach(bar => skillObserver.observe(bar));
-
-    // ===== Project Filter =====
-    const filterBtns = document.querySelectorAll('.filter-btn');
+const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-item');
 
     filterBtns.forEach(btn => {
@@ -99,9 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     });
-
-    // ===== Project Search =====
-    const searchInput = document.getElementById('project-search');
+const searchInput = document.getElementById('project-search');
     if (searchInput) {
         searchInput.addEventListener('input', function () {
             const query = this.value.toLowerCase();
@@ -112,9 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-
-    // ===== Smooth Scroll for Anchor Links =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href === '#') return; // Skip empty hash links
@@ -134,9 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
-    // ===== Admin Sidebar Toggle (Mobile / Tablet) =====
-    const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebarToggle = document.getElementById('sidebar-toggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
     const mobileSidebarMq = window.matchMedia('(max-width: 991.98px)');
@@ -180,9 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.addEventListener('resize', handleSidebarBreakpoint);
-
-    // ===== Toast Notifications =====
-    window.showToast = function (message, type = 'success') {
+window.showToast = function (message, type = 'success') {
         const container = document.getElementById('toast-container');
         if (!container) return;
 
@@ -216,30 +195,24 @@ document.addEventListener('DOMContentLoaded', function () {
         toast.show();
         toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
     };
-
-    // ===== Auto-show alerts from URL params =====
-    const urlParams = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === '1') {
-        showToast('Operação realizada com sucesso!', 'success');
+        showToast('OperaÃ§Ã£o realizada com sucesso!', 'success');
     }
     if (urlParams.get('error') === '1') {
         showToast('Ocorreu um erro. Tente novamente.', 'danger');
     }
     if (urlParams.get('deleted') === '1') {
-        showToast('Item excluído com sucesso.', 'warning');
+        showToast('Item excluÃ­do com sucesso.', 'warning');
     }
-
-    // ===== Confirm Delete Modal =====
-    window.confirmDelete = function (url, name) {
+window.confirmDelete = function (url, name) {
         const modal = document.getElementById('deleteModal');
         if (!modal) return;
         document.getElementById('deleteItemName').textContent = name || 'este item';
         document.getElementById('deleteConfirmBtn').href = url;
         new bootstrap.Modal(modal).show();
     };
-
-    // ===== Image Preview on Upload =====
-    document.querySelectorAll('input[type="file"][data-preview]').forEach(input => {
+document.querySelectorAll('input[type="file"][data-preview]').forEach(input => {
         input.addEventListener('change', function () {
             const previewId = this.dataset.preview;
             const preview = document.getElementById(previewId);
@@ -250,9 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
-    // ===== Counter Animation =====
-    const counterObserver = new IntersectionObserver((entries) => {
+const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el = entry.target;
@@ -275,9 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.5 });
 
     document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
-
-    // ===== Typing Effect for Hero =====
-    const typingEl = document.getElementById('typing-text');
+const typingEl = document.getElementById('typing-text');
     if (typingEl) {
         const texts = JSON.parse(typingEl.dataset.texts || '[]');
         if (texts.length > 0) {
@@ -308,9 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
             type();
         }
     }
-
-    // ===== Particle Background (Hero) =====
-    const canvas = document.getElementById('particles-canvas');
+const canvas = document.getElementById('particles-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         canvas.width = canvas.offsetWidth;
@@ -349,9 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
             canvas.height = canvas.offsetHeight;
         });
     }
-
-    // ===== Contact Form (prevent default, show toast) =====
-    const contactForm = document.getElementById('contact-form');
+const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             const btn = this.querySelector('button[type="submit"]');
@@ -363,3 +328,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+

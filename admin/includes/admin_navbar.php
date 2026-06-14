@@ -1,8 +1,5 @@
-<?php
-/**
- * admin/includes/admin_navbar.php
- * Barra superior mobile (toggle da sidebar) — componente reutilizável.
- */
+﻿<?php
+// Componente do admin
 ?>
 <header class="admin-mobile-bar d-lg-none" id="admin-mobile-bar">
     <button type="button"
@@ -15,3 +12,5 @@
     </button>
     <span class="admin-mobile-bar__title">Admin Panel</span>
 </header>
+
+

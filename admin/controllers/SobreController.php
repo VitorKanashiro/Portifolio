@@ -1,21 +1,18 @@
-<?php
-/**
- * admin/controllers/SobreController.php
- * Edição da seção Sobre Mim.
- */
+﻿<?php
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class SobreController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    public function editar(): void
+    public function editar()
     {
         exigirAutenticacao();
 
@@ -54,7 +51,7 @@ class SobreController
         $foto           = $sobre['foto'] ?? '';
 
         if ($titulo === '') {
-            return ['erro' => 'O título é obrigatório.', 'sucesso' => ''];
+            return ['erro' => 'O tÃ­tulo Ã© obrigatÃ³rio.', 'sucesso' => ''];
         }
 
         if (!empty($files['foto']['name'])) {
@@ -76,7 +73,9 @@ class SobreController
         );
 
         return $ok
-            ? ['erro' => '', 'sucesso' => 'Informações sobre você atualizadas com sucesso!']
-            : ['erro' => 'Erro ao salvar informações.', 'sucesso' => ''];
+            ? ['erro' => '', 'sucesso' => 'InformaÃ§Ãµes sobre vocÃª atualizadas com sucesso!']
+            : ['erro' => 'Erro ao salvar informaÃ§Ãµes.', 'sucesso' => ''];
     }
 }
+
+

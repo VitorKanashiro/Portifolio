@@ -1,21 +1,33 @@
-<?php
-/**
- * includes/helpers.php
- * Funções auxiliares reutilizáveis em todo o portfólio público.
- * Centraliza lógica comum para facilitar manutenção por estudantes de ADS.
- */
+﻿<?php
+// Componente visual global
 
-/**
- * Escapa texto para exibição segura em HTML (previne XSS).
- */
+// Polyfills para compatibilidade com versÃµes anteriores ao PHP 8.0
+if (!function_exists('str_contains')) {
+    function str_contains(string $haystack, string $needle): bool
+    {
+        return $needle !== '' && strpos($haystack, $needle) !== false;
+    }
+}
+
+if (!function_exists('str_starts_with')) {
+    function str_starts_with(string $haystack, string $needle): bool
+    {
+        return strncmp($haystack, $needle, strlen($needle)) === 0;
+    }
+}
+
+if (!function_exists('str_ends_with')) {
+    function str_ends_with(string $haystack, string $needle): bool
+    {
+        return $needle === '' || (substr($haystack, -strlen($needle)) === $needle);
+    }
+}
+
 function esc(string $texto): string
 {
     return htmlspecialchars($texto, ENT_QUOTES, 'UTF-8');
 }
 
-/**
- * Retorna o caminho web absoluto até a raiz do projeto (ex: /portifolio-1/).
- */
 function getSiteRoot(): string
 {
     static $root = null;
@@ -36,9 +48,6 @@ function getSiteRoot(): string
     return $root;
 }
 
-/**
- * Monta URL absoluta a partir da raiz do site.
- */
 function siteUrl(string $path = ''): string
 {
     if ($path === '' || $path === '/') {
@@ -48,10 +57,6 @@ function siteUrl(string $path = ''): string
     return getSiteRoot() . ltrim($path, '/');
 }
 
-/**
- * Converte um título em slug amigável para URLs.
- * Ex: "Sistema de Portfólio" → "sistema-de-portfolio"
- */
 function gerarSlug(string $texto): string
 {
     $texto = mb_strtolower($texto, 'UTF-8');
@@ -62,9 +67,6 @@ function gerarSlug(string $texto): string
     return $texto !== '' ? $texto : 'projeto';
 }
 
-/**
- * Gera slug único para um projeto (título + id para evitar duplicatas).
- */
 function gerarSlugProjeto(array $projeto): string
 {
     $slugBase = gerarSlug($projeto['titulo'] ?? 'projeto');
@@ -72,17 +74,11 @@ function gerarSlugProjeto(array $projeto): string
     return $slugBase . '-' . ($projeto['id'] ?? 0);
 }
 
-/**
- * Retorna URL amigável do projeto (ex: /portifolio-1/projeto/sistema-de-portfolio-1).
- */
 function urlProjeto(array $projeto): string
 {
     return siteUrl('projeto/' . gerarSlugProjeto($projeto));
 }
 
-/**
- * Verifica se um arquivo de upload existe no servidor.
- */
 function uploadExiste(string $arquivo): bool
 {
     if ($arquivo === '') {
@@ -92,35 +88,31 @@ function uploadExiste(string $arquivo): bool
     return file_exists(dirname(__DIR__) . '/assets/uploads/' . $arquivo);
 }
 
-/**
- * Retorna o caminho relativo da imagem de upload.
- */
 function uploadUrl(string $arquivo): string
 {
     return siteUrl('assets/uploads/' . $arquivo);
 }
 
-/**
- * Retorna classe CSS do badge de nível da tecnologia.
- */
 function badgeNivelTecnologia(string $nivel): string
 {
     $nivelLower = strtolower($nivel);
 
-    return match (true) {
-        str_contains($nivelLower, 'expert')   => 'badge-expert',
-        str_contains($nivelLower, 'avan')   => 'badge-avancado',
-        str_contains($nivelLower, 'inter')    => 'badge-intermediario',
-        default                               => 'badge-iniciante',
-    };
+    if (str_contains($nivelLower, 'expert')) {
+        return 'badge-expert';
+    } elseif (str_contains($nivelLower, 'avan')) {
+        return 'badge-avancado';
+    } elseif (str_contains($nivelLower, 'inter')) {
+        return 'badge-intermediario';
+    } else {
+        return 'badge-iniciante';
+    }
 }
 
-/**
- * Extrai anos numéricos de um texto de experiência (ex: "3+" → 3).
- */
 function extrairNumeroExperiencia(string $experiencia): int
 {
     $numero = (int) preg_replace('/\D/', '', $experiencia);
 
     return $numero > 0 ? $numero : 3;
 }
+
+

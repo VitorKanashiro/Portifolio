@@ -1,16 +1,10 @@
 <?php
-/**
- * includes/navbar.php
- * Barra de navegação principal — componente reutilizável.
- *
- * Variáveis esperadas: $nome (string)
- * Variáveis opcionais: $nav_home_url, $nav_modo (home|interno)
- */
+// Componente visual global
 require_once dirname(__DIR__) . '/includes/helpers.php';
 
 $navModo    = $nav_modo ?? 'home';
 $navActive  = $nav_active ?? '';
-$homeUrl    = siteUrl('index.php');
+$homeUrl    = siteUrl('');
 $navHomeUrl = $nav_home_url ?? ($navModo === 'interno' ? $homeUrl : '#home');
 $prefixo    = ($navModo === 'interno') ? $homeUrl : '';
 
@@ -22,16 +16,15 @@ $navItems = [
     'contato'      => ['label' => 'Contato',      'href' => $prefixo . '#contato'],
 ];
 ?>
-<!-- SEO: cabeçalho e navegação principal do site -->
 <header>
-    <nav class="navbar navbar-expand-lg fixed-top glass-nav" id="mainNav" aria-label="Navegação principal">
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav" id="mainNav" aria-label="NavegaÃ§Ã£o principal">
         <div class="container">
             <a class="navbar-brand text-gradient" href="<?= esc($navHomeUrl) ?>">
                 &lt;<?= esc($nome) ?>/&gt;
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu de navegação">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu de navegaÃ§Ã£o">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -48,3 +41,5 @@ $navItems = [
         </div>
     </nav>
 </header>
+
+

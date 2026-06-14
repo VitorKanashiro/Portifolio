@@ -1,27 +1,21 @@
 <?php
-/**
- * admin/controllers/LoginController.php
- * Lógica de autenticação do painel administrativo.
- */
+// Controlador administrativo
 
 require_once dirname(__DIR__) . '/auth/auth.php';
 
 class LoginController
 {
-    private mysqli $conn;
+        private $conn;
 
     public function __construct(mysqli $conn)
     {
         $this->conn = $conn;
     }
 
-    /**
-     * Exibe formulário de login ou redireciona se já autenticado.
-     */
-    public function exibirLogin(): void
+        public function exibirLogin()
     {
         if (adminJaLogado()) {
-            header('Location: ' . adminUrlBase() . 'dashboard.php');
+            header('Location: ' . adminUrlBase() . 'dashboard');
             exit;
         }
 
@@ -30,7 +24,7 @@ class LoginController
             'sucesso' => $this->mensagemLogout(),
             'email'   => adminSanitizar($_POST['email'] ?? ''),
             'timeout' => isset($_GET['timeout']),
-            'recuperar_senha_habilitado' => false, // preparado para implementação futura
+            'recuperar_senha_habilitado' => false, // preparado para implementaÃ§Ã£o futura
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -45,15 +39,12 @@ class LoginController
         }
 
         renderAdminView('auth/login', $dados, [
-            'page_title'   => 'Login | Admin Portfólio',
+            'page_title'   => 'Login | Admin PortfÃ³lio',
             'show_sidebar' => false,
         ]);
     }
 
-    /**
-     * Valida credenciais e registra sessão segura.
-     */
-    public function autenticar(): array
+        public function autenticar(): array
     {
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $senha = $_POST['senha'] ?? '';
@@ -86,34 +77,25 @@ class LoginController
         return ['sucesso' => true, 'erro' => '', 'email' => ''];
     }
 
-    /**
-     * Encerra sessão e redireciona para login.
-     */
-    public function logout(): void
+        public function logout()
     {
         encerrarSessaoAdmin();
         header('Location: ' . adminLoginUrl() . '?logged_out=1');
         exit;
     }
 
-    /**
-     * Mensagem após logout ou timeout.
-     */
-    private function mensagemLogout(): string
+        private function mensagemLogout(): string
     {
         if (isset($_GET['logged_out'])) {
-            return 'Sessão encerrada com sucesso.';
+            return 'SessÃ£o encerrada com sucesso.';
         }
 
         return '';
     }
 
-    /**
-     * Valida URL de redirecionamento pós-login (evita open redirect).
-     */
-    private function urlRedirecionamentoSeguro(string $url): string
+        private function urlRedirecionamentoSeguro(string $url): string
     {
-        $padrao = adminUrlBase() . 'dashboard.php';
+        $padrao = adminUrlBase() . 'dashboard';
 
         if ($url === '' || !str_starts_with($url, '/')) {
             return $padrao;
@@ -126,14 +108,13 @@ class LoginController
         return $url;
     }
 
-    /**
-     * Estrutura preparada para recuperação de senha (implementação futura).
-     */
-    public function solicitarRecuperacaoSenha(string $email): array
+        public function solicitarRecuperacaoSenha(string $email): array
     {
         return [
             'sucesso' => false,
-            'erro'    => 'Recuperação de senha ainda não configurada. Contate o administrador do sistema.',
+            'erro'    => 'RecuperaÃ§Ã£o de senha ainda nÃ£o configurada. Contate o administrador do sistema.',
         ];
     }
 }
+
+

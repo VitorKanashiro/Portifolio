@@ -1,7 +1,8 @@
-<?php /** View: criar rede social */ ?>
+<?php
+// Visualizacao do painel administrativo  ?>
 <div class="admin-content">
     <div class="d-flex align-items-center gap-3 mb-5">
-        <a href="<?= adminEsc($adminBase) ?>redes/index.php" class="btn btn-outline-custom btn-custom" style="padding:0.5rem 0.9rem;"><i class="bi bi-arrow-left"></i></a>
+        <a href="<?= adminEsc($adminBase) ?>redes" class="btn btn-outline-custom btn-custom" style="padding:0.5rem 0.9rem;"><i class="bi bi-arrow-left"></i></a>
         <div>
             <h1 class="fw-black mb-0 fs-3">Nova Rede Social</h1>
             <p class="text-muted-custom mb-0 small">Adicionar novo link de perfil social</p>
@@ -23,7 +24,7 @@
                                    value="<?= adminEsc($plataforma ?? '') ?>" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label-custom">Ordem de exibição</label>
+                            <label class="form-label-custom">Ordem de exibiÃ§Ã£o</label>
                             <input type="number" name="ordem" class="form-control form-control-admin" value="<?= (int) ($ordem ?? 0) ?>">
                         </div>
                     </div>
@@ -35,7 +36,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label-custom">Ícone (Bootstrap Icons) *</label>
+                        <label class="form-label-custom">Ãcone (Bootstrap Icons) *</label>
                         <div class="position-relative">
                             <i id="icon-preview" class="bi bi-link-45deg position-absolute" style="left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:1.1rem;"></i>
                             <input type="text" name="icone" id="iconeInput" class="form-control form-control-admin"
@@ -93,3 +94,5 @@ document.querySelector('[name="plataforma"]').addEventListener('input', function
     document.getElementById('preview-name').textContent = this.value || 'Plataforma';
 });
 </script>
+
+
